@@ -7,600 +7,199 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #F5F2EC;
-  --bg2: #EDE9E0;
-  --ink: #1A1915;
-  --ink2: #5A5750;
-  --ink3: #9A9690;
-  --run: #1A4A3A;
-  --run-bg: #D6EDE3;
-  --gym: #2A2060;
-  --gym-bg: #DDD9F5;
-  --rest: #5A5750;
-  --rest-bg: #E8E4DA;
-  --race: #8B1A1A;
-  --race-bg: #F5D9D9;
-  --accent: #C4873A;
-  --accent2: #1A4A3A;
-  --border: rgba(26,25,21,0.12);
-  --border2: rgba(26,25,21,0.06);
-  --ok: #1A4A3A;
-  --ok-bg: #D6EDE3;
-  --warn: #7A4A10;
-  --warn-bg: #FEF3E0;
-  --ko: #8B1A1A;
-  --ko-bg: #F5D9D9;
+  --bg: #F5F2EC; --bg2: #EDE9E0; --ink: #1A1915; --ink2: #5A5750; --ink3: #9A9690;
+  --run: #1A4A3A; --run-bg: #D6EDE3; --gym: #2A2060; --gym-bg: #DDD9F5;
+  --rest: #5A5750; --rest-bg: #E8E4DA; --race: #8B1A1A; --race-bg: #F5D9D9;
+  --accent: #C4873A; --accent2: #1A4A3A; --border: rgba(26,25,21,0.12); --border2: rgba(26,25,21,0.06);
+  --ok: #1A4A3A; --ok-bg: #D6EDE3; --warn: #7A4A10; --warn-bg: #FEF3E0; --ko: #8B1A1A; --ko-bg: #F5D9D9;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  min-height: 100vh;
-}
+body { background: var(--bg); color: var(--ink); font-family: 'DM Sans', sans-serif; font-size: 14px; line-height: 1.6; }
 
 /* HEADER */
-.site-header {
-  background: var(--ink);
-  color: var(--bg);
-  padding: 48px 40px 40px;
-  position: relative;
-  overflow: hidden;
-}
-.site-header::before {
-  content: '';
-  position: absolute;
-  top: -60px; right: -60px;
-  width: 300px; height: 300px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-.header-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.header-title {
-  font-family: 'Fraunces', serif;
-  font-size: 42px;
-  font-weight: 300;
-  line-height: 1.1;
-  color: #fff;
-  margin-bottom: 8px;
-}
-.header-title span { color: #C4873A; font-weight: 600; }
-.header-sub {
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 32px;
-}
-.header-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-.stat { display: flex; flex-direction: column; gap: 2px; }
-.stat-val {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: #fff;
-}
-.stat-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-}
+.site-header { background: var(--ink); color: var(--bg); padding: 40px 40px 32px; position: relative; overflow: hidden; }
+.site-header::before { content:''; position:absolute; top:-60px; right:-60px; width:300px; height:300px; border-radius:50%; border:1px solid rgba(255,255,255,0.06); }
+.header-label { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.12em; color:rgba(255,255,255,0.4); text-transform:uppercase; margin-bottom:12px; }
+.header-title { font-family:'Fraunces',serif; font-size:38px; font-weight:300; line-height:1.1; color:#fff; margin-bottom:6px; }
+.header-title span { color:#C4873A; font-weight:600; }
+.header-sub { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:24px; }
+.header-stats { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:20px; }
+.stat { display:flex; flex-direction:column; gap:2px; }
+.stat-val { font-family:'Fraunces',serif; font-size:20px; font-weight:400; color:#fff; }
+.stat-lbl { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); text-transform:uppercase; }
+
+/* PROGRESS BAR */
+.progress-wrap { margin-top:4px; }
+.progress-label { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:5px; display:flex; justify-content:space-between; }
+.progress-track { background:rgba(255,255,255,0.1); border-radius:4px; height:6px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#C4873A,#e8a84a); border-radius:4px; transition:width .8s ease; width:0%; }
 
 /* STRAVA BAR */
-.strava-bar {
-  background: #FC4C02;
-  padding: 12px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.strava-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 13px;
-}
-.strava-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.4);
-  flex-shrink: 0;
-}
-.strava-dot.connected { background: #A8F0C6; }
-.strava-btn {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  color: #fff;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-family: 'DM Mono', monospace;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  transition: background .2s;
-}
-.strava-btn:hover { background: rgba(255,255,255,0.25); }
-.strava-sync-time {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.5);
-}
-
-/* LEGEND */
-.legend-bar {
-  background: var(--bg2);
-  padding: 14px 40px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--ink2);
-}
-.legend-dot { width: 8px; height: 8px; border-radius: 50%; }
-
-/* COUNTDOWN */
-.countdown-bar {
-  background: var(--ink);
-  padding: 16px 40px;
-  display: flex;
-  gap: 40px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.countdown-item { display: flex; align-items: center; gap: 14px; }
-.countdown-icon { font-size: 20px; line-height: 1; }
-.countdown-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-}
-.countdown-days {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--accent);
-  line-height: 1;
-}
-.countdown-days span {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  color: rgba(255,255,255,0.5);
-  margin-left: 4px;
-}
-.countdown-date {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  margin-top: 2px;
-}
-
-/* MAIN */
-.main { padding: 40px; max-width: 1400px; }
-
-/* PHASE */
-.phase-block { margin-bottom: 48px; }
-.phase-header {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid var(--ink);
-  cursor: pointer;
-  user-select: none;
-  pointer-events: all;
-}
-.phase-header * { pointer-events: none; }
-.phase-num {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--ink3);
-  flex-shrink: 0;
-}
-.phase-name {
-  font-family: 'Fraunces', serif;
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--ink);
-  flex: 1;
-}
-.phase-weeks-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--ink3);
-  letter-spacing: 0.08em;
-  flex-shrink: 0;
-}
-.phase-toggle {
-  font-size: 18px;
-  color: var(--ink3);
-  transition: transform .25s;
-  line-height: 1;
-  flex-shrink: 0;
-}
-.phase-toggle.open { transform: rotate(180deg); }
-.phase-content.hidden { display: none; }
-
-/* WEEKS GRID */
-.weeks-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 16px;
-}
-
-/* WEEK CARD */
-.week-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-}
-.week-card.scarico { background: #FAFAF8; }
-.week-card.main-race { border: 2px solid var(--race); }
-
-/* STRAVA WEEK OVERLAY */
-.week-strava-bar {
-  padding: 8px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  font-size: 11px;
-  border-bottom: 1px solid var(--border2);
-  display: none;
-}
-.week-strava-bar.visible { display: flex; }
-.week-strava-bar.ok { background: var(--ok-bg); color: var(--ok); }
-.week-strava-bar.warn { background: var(--warn-bg); color: var(--warn); }
-.week-strava-bar.ko { background: var(--ko-bg); color: var(--ko); }
-.week-strava-bar.future { background: var(--bg2); color: var(--ink3); }
-.wsb-label { font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
-.wsb-detail { font-weight: 500; }
-.week-ai-note {
-  padding: 8px 18px 10px;
-  font-size: 12px;
-  color: var(--ink2);
-  font-style: italic;
-  border-bottom: 1px solid var(--border2);
-  display: none;
-  line-height: 1.5;
-}
-.week-ai-note.visible { display: block; }
-
-.week-head {
-  padding: 14px 18px 12px;
-  border-bottom: 1px solid var(--border2);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.week-name-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-.week-name {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink2);
-}
-.week-badge {
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 8px;
-  border-radius: 20px;
-  letter-spacing: 0.04em;
-}
-.badge-scarico { background: var(--rest-bg); color: var(--rest); }
-.badge-test { background: #FEF3E0; color: #7A4A10; }
-.badge-gara { background: var(--race-bg); color: var(--race); }
-.week-focus { font-size: 13px; color: var(--ink); font-weight: 400; }
-.week-km {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--ink3);
-  margin-top: 2px;
-}
-
-/* DAY ROW */
-.day-row {
-  display: grid;
-  grid-template-columns: 32px auto 1fr;
-  gap: 0 10px;
-  padding: 9px 18px;
-  border-bottom: 1px solid var(--border2);
-  align-items: start;
-}
-.day-row:last-child { border-bottom: none; }
-.day-row.highlight-day { background: #FFFBF5; }
-.day-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink3);
-  padding-top: 2px;
-}
-.tag {
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 7px;
-  border-radius: 20px;
-  white-space: nowrap;
-  letter-spacing: 0.03em;
-  align-self: start;
-  margin-top: 2px;
-}
-.tag-run { background: var(--run-bg); color: var(--run); }
-.tag-gym { background: var(--gym-bg); color: var(--gym); }
-.tag-rest { background: var(--rest-bg); color: var(--rest); }
-.tag-race { background: var(--race-bg); color: var(--race); font-weight: 600; }
-.tag-test { background: #FEF3E0; color: #7A4A10; font-weight: 600; }
-.day-main { font-size: 13px; font-weight: 500; color: var(--ink); line-height: 1.4; }
-.day-sub { font-size: 12px; color: var(--ink2); line-height: 1.6; margin-top: 3px; }
-.day-km {
-  display: inline-block;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--accent2);
-  background: var(--run-bg);
-  padding: 1px 5px;
-  border-radius: 4px;
-  margin-right: 4px;
-  font-weight: 500;
-}
-
-/* RACE DAY */
-.race-day-row {
-  background: linear-gradient(135deg, #FDF5F5 0%, #FAF0F0 100%);
-  padding: 14px 18px;
-  border-top: 1px solid var(--border2);
-}
-.race-day-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--race);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.race-day-title {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--race);
-  margin-bottom: 2px;
-}
-.race-day-sub { font-size: 12px; color: var(--ink2); line-height: 1.6; }
-
-/* MEZZA BANNER */
-.mezza-banner {
-  background: var(--ink);
-  color: #fff;
-  border-radius: 10px;
-  padding: 20px 24px;
-  margin: 8px 0 16px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-.mezza-icon { font-size: 32px; line-height: 1; }
-.mezza-text h3 {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: #fff;
-  margin-bottom: 2px;
-}
-.mezza-text p { font-size: 12px; color: rgba(255,255,255,0.5); }
-.mezza-target { margin-left: auto; text-align: right; }
-.mezza-target-val {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 600;
-  color: var(--accent);
-}
-.mezza-target-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* CONSIGLIO GIORNALIERO */
-.daily-advice {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  padding: 20px 40px;
-  border-bottom: 1px solid rgba(167,139,250,0.15);
-}
-.daily-advice-inner {
-  max-width: 900px;
-}
-.daily-advice-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: rgba(167,139,250,0.5);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.daily-advice-label::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: rgba(167,139,250,0.1);
-}
-.daily-advice-text {
-  font-family: 'Fraunces', serif;
-  font-size: 17px;
-  font-weight: 300;
-  color: #e2e8f0;
-  line-height: 1.6;
-  min-height: 28px;
-}
-.daily-advice-text.loading {
-  color: rgba(255,255,255,0.25);
-  font-style: italic;
-  font-size: 14px;
-  font-family: 'DM Sans', sans-serif;
-}
-.daily-advice-meta {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.2);
-  margin-top: 8px;
-}
-.daily-advice-workout {
-  display: inline-block;
-  background: rgba(167,139,250,0.15);
-  border: 1px solid rgba(167,139,250,0.2);
-  color: #a78bfa;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  padding: 2px 10px;
-  border-radius: 20px;
-  margin-bottom: 10px;
-}
+.strava-bar { background:#FC4C02; padding:10px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.strava-status { display:flex; align-items:center; gap:8px; color:#fff; font-size:13px; }
+.dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.3); flex-shrink:0; }
+.dot.on { background:#A8F0C6; }
+.dot.purple { background:rgba(167,139,250,0.4); }
+.dot.purple.on { background:#a78bfa; }
+.conn-btn { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3); color:#fff; padding:5px 14px; border-radius:20px; font-size:11px; font-family:'DM Mono',monospace; cursor:pointer; letter-spacing:0.06em; transition:background .2s; }
+.conn-btn:hover { background:rgba(255,255,255,0.25); }
+.sync-time { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.5); }
 
 /* OURA BAR */
-.oura-bar {
-  background: #1a1a2e;
-  padding: 12px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.oura-status {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #fff;
-  font-size: 13px;
-}
-.oura-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.3);
-  flex-shrink: 0;
-}
-.oura-dot.connected { background: #a78bfa; }
-.oura-metrics {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.oura-metric {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-}
-.oura-metric-val {
-  font-family: 'Fraunces', serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: #a78bfa;
-  line-height: 1;
-}
-.oura-metric-val.good { color: #86efac; }
-.oura-metric-val.warn { color: #fde68a; }
-.oura-metric-val.bad  { color: #fca5a5; }
-.oura-metric-lbl {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.35);
-  text-transform: uppercase;
-}
-.oura-btn {
-  background: rgba(167,139,250,0.15);
-  border: 1px solid rgba(167,139,250,0.3);
-  color: #a78bfa;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-family: 'DM Mono', monospace;
-  cursor: pointer;
-  letter-spacing: 0.06em;
-  transition: background .2s;
-}
-.oura-btn:hover { background: rgba(167,139,250,0.25); }
+.oura-bar { background:#16213e; padding:10px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.oura-status { display:flex; align-items:center; gap:8px; color:#fff; font-size:13px; }
+.oura-metrics { display:none; gap:20px; align-items:center; }
+.oura-metric { display:flex; flex-direction:column; align-items:center; gap:1px; }
+.oura-metric-val { font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:#a78bfa; line-height:1; }
+.oura-metric-val.good { color:#86efac; }
+.oura-metric-val.warn { color:#fde68a; }
+.oura-metric-val.bad  { color:#fca5a5; }
+.oura-metric-lbl { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.08em; color:rgba(255,255,255,0.35); text-transform:uppercase; }
+.oura-btn { background:rgba(167,139,250,0.15); border:1px solid rgba(167,139,250,0.3); color:#a78bfa; padding:5px 14px; border-radius:20px; font-size:11px; font-family:'DM Mono',monospace; cursor:pointer; letter-spacing:0.06em; }
+.oura-btn:hover { background:rgba(167,139,250,0.25); }
 
-/* LOADING OVERLAY */
-.loading-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(26,25,21,0.6);
-  z-index: 100;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 16px;
-}
-.loading-overlay.visible { display: flex; }
-.loading-spinner {
-  width: 40px; height: 40px;
-  border: 3px solid rgba(255,255,255,0.2);
-  border-top-color: #FC4C02;
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.loading-text {
-  color: #fff;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
+/* CONSIGLIO DEL GIORNO */
+.daily-advice { background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%); padding:18px 40px; border-bottom:1px solid rgba(167,139,250,0.12); }
+.daily-advice-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(167,139,250,0.5); text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+.daily-advice-label span { font-size:10px; }
+.daily-advice-label::after { content:''; flex:1; height:1px; background:rgba(167,139,250,0.1); }
+.advice-workout-tag { display:inline-block; background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.2); color:#a78bfa; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; padding:2px 10px; border-radius:20px; margin-bottom:8px; }
+.daily-advice-text { font-family:'Fraunces',serif; font-size:16px; font-weight:300; color:#e2e8f0; line-height:1.6; }
+.daily-advice-text.placeholder { color:rgba(255,255,255,0.3); font-style:italic; font-size:13px; font-family:'DM Sans',sans-serif; }
+.daily-advice-text.loading { color:rgba(255,255,255,0.25); font-style:italic; font-size:13px; font-family:'DM Sans',sans-serif; }
+.advice-meta { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.2); margin-top:6px; }
 
+/* LEGEND */
+.legend-bar { background:var(--bg2); padding:12px 40px; border-bottom:1px solid var(--border); display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--ink2); }
+.legend-dot { width:8px; height:8px; border-radius:50%; }
+
+/* COUNTDOWN */
+.countdown-bar { background:var(--ink); padding:14px 40px; display:flex; gap:32px; align-items:center; flex-wrap:wrap; }
+.countdown-item { display:flex; align-items:center; gap:12px; }
+.countdown-icon { font-size:18px; }
+.countdown-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); text-transform:uppercase; }
+.countdown-days { font-family:'Fraunces',serif; font-size:24px; font-weight:600; color:var(--accent); line-height:1; }
+.countdown-days span { font-family:'DM Sans',sans-serif; font-size:12px; font-weight:400; color:rgba(255,255,255,0.5); margin-left:3px; }
+.countdown-date { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.35); margin-top:2px; }
+
+/* MAIN */
+.main { padding:32px 40px; max-width:1400px; }
+
+/* PHASE */
+.phase-block { margin-bottom:40px; }
+.phase-header { display:flex; align-items:center; gap:14px; margin-bottom:16px; padding-bottom:10px; border-bottom:2px solid var(--ink); cursor:pointer; user-select:none; pointer-events:all; }
+.phase-header * { pointer-events:none; }
+.phase-num { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--ink3); flex-shrink:0; }
+.phase-name { font-family:'Fraunces',serif; font-size:22px; font-weight:400; color:var(--ink); flex:1; }
+.phase-weeks-lbl { font-family:'DM Mono',monospace; font-size:11px; color:var(--ink3); flex-shrink:0; }
+.phase-toggle { font-size:16px; color:var(--ink3); transition:transform .25s; flex-shrink:0; }
+.phase-toggle.open { transform:rotate(180deg); }
+.phase-content.hidden { display:none; }
+
+/* WEEKS GRID */
+.weeks-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:14px; }
+
+/* WEEK CARD */
+.week-card { background:#fff; border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:box-shadow .2s; }
+.week-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.08); }
+.week-card.scarico { background:#FAFAF8; }
+.week-card.main-race { border:2px solid var(--race); }
+.week-card.current-week { border:2px solid var(--accent); box-shadow:0 0 0 3px rgba(196,135,58,0.1); }
+.week-card.past-week { opacity:0.85; }
+
+/* WEEK STATUS BAR */
+.week-status-bar { padding:6px 16px; display:flex; align-items:center; justify-content:space-between; font-size:11px; border-bottom:1px solid var(--border2); }
+.week-status-bar.ok   { background:var(--ok-bg);   color:var(--ok); }
+.week-status-bar.warn { background:var(--warn-bg); color:var(--warn); }
+.week-status-bar.ko   { background:var(--ko-bg);   color:var(--ko); }
+.week-status-bar.future { background:var(--bg2); color:var(--ink3); }
+.week-status-bar.current { background:#FEF3E0; color:#7A4A10; }
+.wsb-label { font-family:'DM Mono',monospace; font-weight:500; letter-spacing:0.03em; }
+.wsb-km { font-weight:600; }
+
+/* WEEK AI NOTE */
+.week-ai-note { padding:7px 16px 8px; font-size:12px; color:var(--ink2); font-style:italic; border-bottom:1px solid var(--border2); line-height:1.5; display:none; }
+.week-ai-note.visible { display:block; }
+
+/* WEEK HEAD */
+.week-head { padding:12px 16px 10px; border-bottom:1px solid var(--border2); }
+.week-name-row { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:2px; }
+.week-name { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink2); }
+.week-badge { font-size:10px; font-weight:500; padding:2px 7px; border-radius:20px; }
+.badge-scarico { background:var(--rest-bg); color:var(--rest); }
+.badge-test    { background:#FEF3E0; color:#7A4A10; }
+.badge-gara    { background:var(--race-bg); color:var(--race); }
+.badge-oggi    { background:var(--accent); color:#fff; }
+.week-focus { font-size:12px; color:var(--ink); }
+.week-km-lbl { font-family:'DM Mono',monospace; font-size:10px; color:var(--ink3); margin-top:2px; }
+
+/* WEEK PROGRESS */
+.week-progress { padding:6px 16px; border-bottom:1px solid var(--border2); display:none; }
+.week-progress.visible { display:block; }
+.week-progress-track { background:var(--bg2); border-radius:3px; height:4px; overflow:hidden; }
+.week-progress-fill { height:100%; border-radius:3px; transition:width .6s ease; }
+.week-progress-fill.ok   { background:var(--ok); }
+.week-progress-fill.warn { background:#C4873A; }
+.week-progress-fill.ko   { background:var(--race); }
+
+/* DAY ROW */
+.day-row { display:grid; grid-template-columns:30px auto 1fr auto; gap:0 8px; padding:8px 16px; border-bottom:1px solid var(--border2); align-items:start; }
+.day-row:last-child { border-bottom:none; }
+.day-row.today-row { background:#FFFBF5; }
+.day-lbl { font-family:'DM Mono',monospace; font-size:11px; font-weight:500; color:var(--ink3); padding-top:2px; }
+.tag { font-size:10px; font-weight:500; padding:2px 7px; border-radius:20px; white-space:nowrap; letter-spacing:0.03em; align-self:start; margin-top:2px; }
+.tag-run  { background:var(--run-bg);  color:var(--run); }
+.tag-gym  { background:var(--gym-bg);  color:var(--gym); }
+.tag-rest { background:var(--rest-bg); color:var(--rest); }
+.tag-race { background:var(--race-bg); color:var(--race); font-weight:600; }
+.tag-test { background:#FEF3E0; color:#7A4A10; font-weight:600; }
+.day-content { min-width:0; }
+.day-main { font-size:13px; font-weight:500; color:var(--ink); line-height:1.4; }
+.day-sub  { font-size:11px; color:var(--ink2); line-height:1.5; margin-top:2px; }
+.day-km { display:inline-block; font-family:'DM Mono',monospace; font-size:10px; color:var(--accent2); background:var(--run-bg); padding:1px 5px; border-radius:4px; margin-right:4px; font-weight:500; }
+
+/* SPUNTA MANUALE */
+.day-check { width:22px; height:22px; border-radius:6px; border:1.5px solid var(--border); background:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; align-self:center; transition:all .15s; }
+.day-check:hover { border-color:var(--ok); }
+.day-check.checked { background:var(--ok); border-color:var(--ok); }
+.day-check.checked::after { content:'✓'; color:#fff; font-size:13px; line-height:1; }
+.day-check.partial { background:#FEF3E0; border-color:var(--warn); }
+.day-check.partial::after { content:'~'; color:var(--warn); font-size:13px; font-weight:700; line-height:1; }
+.day-row.rest-row .day-check { opacity:0.35; pointer-events:none; }
+
+/* RACE DAY */
+.race-day-row { background:linear-gradient(135deg,#FDF5F5,#FAF0F0); padding:14px 16px; border-top:1px solid var(--border2); }
+.race-day-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--race); text-transform:uppercase; margin-bottom:3px; }
+.race-day-title { font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--race); margin-bottom:2px; }
+.race-day-sub { font-size:11px; color:var(--ink2); line-height:1.6; }
+
+/* MEZZA BANNER */
+.mezza-banner { background:var(--ink); color:#fff; border-radius:10px; padding:18px 22px; margin:8px 0 14px; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.mezza-icon { font-size:28px; }
+.mezza-text h3 { font-family:'Fraunces',serif; font-size:17px; font-weight:400; color:#fff; margin-bottom:2px; }
+.mezza-text p { font-size:12px; color:rgba(255,255,255,0.5); }
+.mezza-target { margin-left:auto; text-align:right; }
+.mezza-target-val { font-family:'Fraunces',serif; font-size:26px; font-weight:600; color:var(--accent); }
+.mezza-target-lbl { font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.1em; }
+
+/* LOADING */
+.loading-overlay { display:none; position:fixed; inset:0; background:rgba(26,25,21,0.6); z-index:100; align-items:center; justify-content:center; flex-direction:column; gap:14px; }
+.loading-overlay.visible { display:flex; }
+.loading-spinner { width:36px; height:36px; border:3px solid rgba(255,255,255,0.2); border-top-color:#FC4C02; border-radius:50%; animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.loading-text { color:#fff; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:0.08em; }
+
+/* RESPONSIVE */
+@media (max-width:640px) {
+  .site-header,.main { padding-left:20px; padding-right:20px; }
+  .strava-bar,.oura-bar,.legend-bar,.countdown-bar,.daily-advice { padding-left:20px; padding-right:20px; }
+  .header-title { font-size:28px; }
+  .oura-metrics { gap:12px; }
+}
 @media print {
-  .phase-content.hidden { display: block !important; }
-  .strava-bar, .loading-overlay { display: none !important; }
-}
-@media (max-width: 600px) {
-  .site-header { padding: 32px 20px; }
-  .header-title { font-size: 28px; }
-  .main { padding: 20px; }
-  .legend-bar, .strava-bar, .countdown-bar { padding: 12px 20px; }
+  .strava-bar,.oura-bar,.daily-advice,.loading-overlay { display:none!important; }
+  .phase-content.hidden { display:block!important; }
 }
 </style>
 </head>
@@ -608,7 +207,7 @@ body {
 
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-spinner"></div>
-  <div class="loading-text" id="loadingText">Connessione a Strava...</div>
+  <div class="loading-text" id="loadingText">Caricamento...</div>
 </div>
 
 <header class="site-header">
@@ -622,52 +221,45 @@ body {
     <div class="stat"><span class="stat-val">2h30'</span><span class="stat-lbl">Obiettivo gara</span></div>
     <div class="stat"><span class="stat-val">4–5</span><span class="stat-lbl">sessioni/sett.</span></div>
   </div>
+  <div class="progress-wrap">
+    <div class="progress-label">
+      <span>Avanzamento piano</span>
+      <span id="progressLbl">0 / ~500 km</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
 </header>
 
 <div class="strava-bar">
   <div class="strava-status">
-    <div class="strava-dot" id="stravaDot"></div>
-    <span id="stravaStatusText">Connessione a Strava in corso...</span>
+    <div class="dot" id="stravaDot"></div>
+    <span id="stravaStatusText">Non connessa a Strava</span>
   </div>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span class="strava-sync-time" id="syncTime"></span>
-    <button class="strava-btn" id="stravaBtn" onclick="handleStravaAuth()">Connetti Strava</button>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="sync-time" id="syncTime"></span>
+    <button class="conn-btn" id="stravaBtn" onclick="handleStravaAuth()">Connetti Strava</button>
   </div>
 </div>
 
 <div class="oura-bar">
   <div class="oura-status">
-    <div class="oura-dot" id="ouraDot"></div>
+    <div class="dot purple" id="ouraDot"></div>
     <span id="ouraStatusText">Oura Ring non connesso</span>
   </div>
-  <div class="oura-metrics" id="ouraMetrics" style="display:none">
-    <div class="oura-metric">
-      <div class="oura-metric-val" id="ouraReadiness">—</div>
-      <div class="oura-metric-lbl">Prontezza</div>
-    </div>
-    <div class="oura-metric">
-      <div class="oura-metric-val" id="ouraSleep">—</div>
-      <div class="oura-metric-lbl">Sonno</div>
-    </div>
-    <div class="oura-metric">
-      <div class="oura-metric-val" id="ouraHRV">—</div>
-      <div class="oura-metric-lbl">HRV</div>
-    </div>
-    <div class="oura-metric">
-      <div class="oura-metric-val" id="ouraRHR">—</div>
-      <div class="oura-metric-lbl">FC riposo</div>
-    </div>
+  <div class="oura-metrics" id="ouraMetrics">
+    <div class="oura-metric"><div class="oura-metric-val" id="ouraReadiness">—</div><div class="oura-metric-lbl">Prontezza</div></div>
+    <div class="oura-metric"><div class="oura-metric-val" id="ouraSleep">—</div><div class="oura-metric-lbl">Sonno</div></div>
+    <div class="oura-metric"><div class="oura-metric-val" id="ouraHRV">—</div><div class="oura-metric-lbl">HRV</div></div>
+    <div class="oura-metric"><div class="oura-metric-val" id="ouraRHR">—</div><div class="oura-metric-lbl">FC riposo</div></div>
   </div>
   <button class="oura-btn" id="ouraBtn" onclick="handleOuraAuth()">Connetti Oura</button>
 </div>
 
-<div class="daily-advice" id="dailyAdvicePanel" style="display:none">
-  <div class="daily-advice-inner">
-    <div class="daily-advice-label">💡 Consiglio di oggi · <span id="adviceDate"></span></div>
-    <div id="adviceWorkout" class="daily-advice-workout"></div>
-    <div class="daily-advice-text loading" id="adviceText">In attesa dei dati Strava e Oura...</div>
-    <div class="daily-advice-meta" id="adviceMeta"></div>
-  </div>
+<div class="daily-advice">
+  <div class="daily-advice-label">💡 Consiglio di oggi · <span id="adviceDate"></span></div>
+  <div id="adviceWorkout" class="advice-workout-tag" style="display:none"></div>
+  <div class="daily-advice-text placeholder" id="adviceText">Connetti Strava per ricevere il consiglio personalizzato del giorno.</div>
+  <div class="advice-meta" id="adviceMeta"></div>
 </div>
 
 <div class="legend-bar">
@@ -675,16 +267,16 @@ body {
   <span class="legend-item"><span class="legend-dot" style="background:#2A2060"></span>Pesi</span>
   <span class="legend-item"><span class="legend-dot" style="background:#9A9690"></span>Riposo</span>
   <span class="legend-item"><span class="legend-dot" style="background:#8B1A1A"></span>Gara</span>
-  <span class="legend-item"><span class="legend-dot" style="background:#C4873A"></span>Settimana scarico</span>
-  <span class="legend-item"><span class="legend-dot" style="background:#1A4A3A;opacity:.4;outline:2px solid #1A4A3A;outline-offset:1px"></span>✓ Settimana completata</span>
-  <span class="legend-item"><span class="legend-dot" style="background:#7A4A10;opacity:.4;outline:2px solid #7A4A10;outline-offset:1px"></span>⚡ Volume parziale</span>
-  <span class="legend-item"><span class="legend-dot" style="background:#8B1A1A;opacity:.4;outline:2px solid #8B1A1A;outline-offset:1px"></span>✗ Sotto volume</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#1A4A3A"></span>✓ Completata</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#C4873A"></span>⚡ Parziale</span>
+  <span class="legend-item"><span class="legend-dot" style="background:#8B1A1A"></span>✗ Sotto</span>
+  <span class="legend-item">☐ spunta manuale</span>
 </div>
 
 <div class="countdown-bar">
   <div class="countdown-item">
     <div class="countdown-icon">🌙</div>
-    <div class="countdown-text">
+    <div>
       <div class="countdown-label">Mezza Maratona Notturna</div>
       <div class="countdown-days" id="cd-mezza">—<span>giorni</span></div>
       <div class="countdown-date">26 giugno 2026</div>
@@ -692,7 +284,7 @@ body {
   </div>
   <div class="countdown-item">
     <div class="countdown-icon">🏔️</div>
-    <div class="countdown-text">
+    <div>
       <div class="countdown-label">Corsa dei 5 Laghi</div>
       <div class="countdown-days" id="cd-trail">—<span>giorni</span></div>
       <div class="countdown-date">6 settembre 2026</div>
@@ -714,67 +306,63 @@ body {
     <div class="weeks-grid">
 
       <div class="week-card" data-week="1" data-start="2026-06-02" data-end="2026-06-08" data-km="35">
-        <div class="week-strava-bar" id="wsb-1"></div>
+        <div class="week-status-bar future" id="wsb-1"><span class="wsb-label">Settimana 1</span><span class="wsb-km" id="wkm-1">35 km previsti</span></div>
+        <div class="week-progress" id="wprog-1"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-1" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-1"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 1 · 2–8 giu</span></div>
           <div class="week-focus">Costruire la base — volume moderato</div>
-          <div class="week-km">Volume previsto: 35 km</div>
+          <div class="week-km-lbl">Volume previsto: 35 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 55 min</div><div class="day-sub">Squat goblet 3×12 (10 kg) · Stacco rumeno 3×10 (12 kg) · Press manubri 3×12 (8 kg) · Rowing 3×10 (10 kg) · Plank 3×45s · Rec 60s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km · Piano · FC max 145 bpm</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">10 min stretching · Mobilità anche e caviglie</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower body + core — 50 min</div><div class="day-sub">Affondo avanti 3×10/gamba (8 kg) · Hip thrust 3×12 (12 kg) · Calf raise 3×20 · Dead bug 3×10</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Corsa media progressiva</div><div class="day-sub">8 km a 6:20/km · Ultimi 2 km a 5:45/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Long run</div><div class="day-sub">Ritmo 6:30/km costante · Porta acqua · Mangia ogni 45 min</div></div></div>
+        <div class="day-row" data-day="Lun" data-date="2026-06-02"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 55 min</div><div class="day-sub">Squat goblet 3×12 (10 kg) · Stacco rumeno 3×10 (12 kg) · Press 3×12 (8 kg) · Rowing 3×10 (10 kg) · Plank 3×45s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar" data-date="2026-06-03"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km · Piano · FC max 145 bpm</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer" data-date="2026-06-04"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Stretching · Mobilità anche e caviglie</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio" data-date="2026-06-05"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower body + core — 50 min</div><div class="day-sub">Affondo avanti 3×10/gamba · Hip thrust 3×12 (12 kg) · Calf raise 3×20 · Dead bug 3×10</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven" data-date="2026-06-06"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Corsa media progressiva</div><div class="day-sub">8 km a 6:20/km · Ultimi 2 km a 5:45/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab" data-date="2026-06-07"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom" data-date="2026-06-08"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Long run</div><div class="day-sub">Ritmo 6:30/km costante · Porta acqua · Gel ogni 45 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="2" data-start="2026-06-09" data-end="2026-06-15" data-km="38">
-        <div class="week-strava-bar" id="wsb-2"></div>
+        <div class="week-status-bar future" id="wsb-2"><span class="wsb-label">Settimana 2</span><span class="wsb-km" id="wkm-2">38 km previsti</span></div>
+        <div class="week-progress" id="wprog-2"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-2" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-2"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 2 · 9–15 giu</span></div>
           <div class="week-focus">Carico progressivo — prima intensità</div>
-          <div class="week-km">Volume previsto: 38 km</div>
+          <div class="week-km-lbl">Volume previsto: 38 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 55 min</div><div class="day-sub">Squat goblet 3×12 (12 kg) · Stacco rumeno 3×10 (14 kg) · Press 3×12 (10 kg) · Rowing 3×10 (12 kg) · Plank 3×50s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Corsa facile + strides</div><div class="day-sub">8 km a 6:30/km · 4×(20s a 5:00/km + 60s rec)</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Foam roller polpacci e quadricipiti</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower body + core — 55 min</div><div class="day-sub">Affondo bulgaro 3×8/gamba (8 kg) · Hip thrust 3×12 (14 kg) · Nordic curl 3×6 · Side plank 3×35s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Fartlek</div><div class="day-sub">3 km a 6:30 · 5×(2 min a 5:20/km / 2 min a 6:30) · 3 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Long run</div><div class="day-sub">Ritmo 6:30/km · Cerca tratto con 50–80 m D+</div></div></div>
+        <div class="day-row" data-day="Lun" data-date="2026-06-09"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 55 min</div><div class="day-sub">Squat goblet 3×12 (12 kg) · Stacco 3×10 (14 kg) · Press 3×12 (10 kg) · Rowing 3×10 (12 kg) · Plank 3×50s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar" data-date="2026-06-10"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Corsa facile + strides</div><div class="day-sub">8 km a 6:30/km · 4×(20s a 5:00/km + 60s rec)</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer" data-date="2026-06-11"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Foam roller polpacci e quadricipiti</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio" data-date="2026-06-12"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower body + core — 55 min</div><div class="day-sub">Affondo bulgaro 3×8/gamba (8 kg) · Hip thrust 3×12 (14 kg) · Nordic curl 3×6 · Side plank 3×35s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven" data-date="2026-06-13"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Fartlek</div><div class="day-sub">3 km a 6:30 · 5×(2 min a 5:20/km / 2 min a 6:30) · 3 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab" data-date="2026-06-14"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom" data-date="2026-06-15"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Long run</div><div class="day-sub">Ritmo 6:30/km · Cerca tratto con 50–80 m D+</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="3" data-start="2026-06-16" data-end="2026-06-22" data-km="32">
-        <div class="week-strava-bar" id="wsb-3"></div>
+        <div class="week-status-bar future" id="wsb-3"><span class="wsb-label">Settimana 3</span><span class="wsb-km" id="wkm-3">32 km previsti</span></div>
+        <div class="week-progress" id="wprog-3"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-3" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-3"></div>
         <div class="week-head">
-          <div class="week-name-row"><span class="week-name">Settimana 3 · 16–22 giu</span><span class="week-badge badge-test">→ Mezza il 26 giu</span></div>
+          <div class="week-name-row"><span class="week-name">Settimana 3 · 16–22 giu</span><span class="week-badge badge-test">→ Mezza 26 giu</span></div>
           <div class="week-focus">Avvicinamento mezza — riduzione volume</div>
-          <div class="week-km">Volume previsto: 32 km</div>
+          <div class="week-km-lbl">Volume previsto: 32 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 45 min</div><div class="day-sub">Squat 3×10 (10 kg) · Press 3×10 (8 kg) · Rowing 3×10 (10 kg) · Core 2×45s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile + attivazione</div><div class="day-sub">6 km a 6:30/km · 4×(30s a 5:10/km + 90s rec)</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Stretching 15 min · Mobilità anche e polpacci</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Soglia breve</div><div class="day-sub">3 km a 6:30 · 4 km a 5:41/km · 3 km a 6:30 · Testa il ritmo mezza</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">4 km</span>Attivazione pre-gara</div><div class="day-sub">20 min facili · 4×20s progressivi · A letto entro le 21</div></div></div>
-        <div class="day-row highlight-day"><span class="day-lbl">Dom</span><span class="tag tag-test">Test</span><div class="day-content"><div class="day-main">Mezza Maratona Notturna · 21,1 km</div><div class="day-sub">Obiettivo: sub-2h · Ritmo: 5:41/km · Parti a 5:48/km i primi 5 km</div></div></div>
+        <div class="day-row" data-day="Lun" data-date="2026-06-16"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 45 min</div><div class="day-sub">Squat 3×10 (10 kg) · Press 3×10 (8 kg) · Rowing 3×10 (10 kg) · Core 2×45s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar" data-date="2026-06-17"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile + attivazione</div><div class="day-sub">6 km a 6:30/km · 4×(30s a 5:10/km + 90s rec)</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer" data-date="2026-06-18"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Stretching 15 min · Mobilità anche e polpacci</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio" data-date="2026-06-19"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Soglia breve</div><div class="day-sub">3 km a 6:30 · 4 km a 5:41/km · 3 km a 6:30 · Testa il ritmo mezza</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Ven" data-date="2026-06-20"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Sab" data-date="2026-06-21"><span class="day-lbl">Sab</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">4 km</span>Attivazione pre-gara</div><div class="day-sub">20 min facili · 4×20s progressivi · A letto entro le 21</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row today-row" data-day="Dom" data-date="2026-06-22"><span class="day-lbl">Dom</span><span class="tag tag-test">Test</span><div class="day-content"><div class="day-main">Mezza Maratona Notturna · 21,1 km</div><div class="day-sub">Obiettivo: sub-2h · Ritmo: 5:41/km · Parti a 5:48/km i primi 5 km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
     </div>
-
     <div class="mezza-banner">
       <div class="mezza-icon">🌙</div>
-      <div class="mezza-text">
-        <h3>Mezza Maratona Notturna · 26 giugno 2026</h3>
-        <p>Gara-test · Strategia: parti conservativo, chiudi forte</p>
-      </div>
-      <div class="mezza-target">
-        <div class="mezza-target-val">sub-2h</div>
-        <div class="mezza-target-lbl">5:41/km target</div>
-      </div>
+      <div class="mezza-text"><h3>Mezza Maratona Notturna · 26 giugno 2026</h3><p>Gara-test · Parti conservativo, chiudi forte</p></div>
+      <div class="mezza-target"><div class="mezza-target-val">sub-2h</div><div class="mezza-target-lbl">5:41/km target</div></div>
     </div>
   </div>
 </div>
@@ -791,73 +379,76 @@ body {
     <div class="weeks-grid">
 
       <div class="week-card scarico" data-week="4" data-start="2026-06-23" data-end="2026-06-29" data-km="22">
-        <div class="week-strava-bar" id="wsb-4"></div>
+        <div class="week-status-bar future" id="wsb-4"><span class="wsb-label">Settimana 4 · Recupero</span><span class="wsb-km" id="wkm-4">22 km previsti</span></div>
+        <div class="week-progress" id="wprog-4"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-4" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-4"></div>
         <div class="week-head">
-          <div class="week-name-row"><span class="week-name">Settimana 4 · 23–29 giu</span><span class="week-badge badge-scarico">Recupero post-gara</span></div>
+          <div class="week-name-row"><span class="week-name">Settimana 4 · 23–29 giu</span><span class="week-badge badge-scarico">Post-gara</span></div>
           <div class="week-focus">Scarico obbligatorio dopo la mezza</div>
-          <div class="week-km">Volume previsto: 22 km</div>
+          <div class="week-km-lbl">Volume previsto: 22 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Giorno dopo la mezza. Mangia bene, idratati, dormi.</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Cammina 20–30 min · Stretching gambe · Foam roller</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Upper body leggero — 35 min</div><div class="day-sub">Solo parte alta: Press 2×10 · Rowing 2×10 · Curl 2×12</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">6 km</span>Corsa molto facile</div><div class="day-sub">Ritmo 6:45/km · Nessuna pressione</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km · Terreno semplice</div></div></div>
+        <div class="day-row rest-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Giorno dopo la mezza. Mangia, idratati, dormi.</div></div><div class="day-check"></div></div>
+        <div class="day-row rest-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div><div class="day-sub">Cammina 20–30 min · Foam roller</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Upper body leggero — 35 min</div><div class="day-sub">Solo parte alta: Press 2×10 · Rowing 2×10 · Curl 2×12</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">6 km</span>Corsa molto facile</div><div class="day-sub">Ritmo 6:45/km · Nessuna pressione</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km · Terreno semplice</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="5" data-start="2026-06-30" data-end="2026-07-06" data-km="38">
-        <div class="week-strava-bar" id="wsb-5"></div>
+        <div class="week-status-bar future" id="wsb-5"><span class="wsb-label">Settimana 5</span><span class="wsb-km" id="wkm-5">38 km previsti</span></div>
+        <div class="week-progress" id="wprog-5"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-5" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-5"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 5 · 30 giu – 6 lug</span></div>
           <div class="week-focus">Ripresa del carico — introduzione salite</div>
-          <div class="week-km">Volume previsto: 38 km</div>
+          <div class="week-km-lbl">Volume previsto: 38 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 60 min</div><div class="day-sub">Squat 4×8 (14 kg) · Hip thrust 4×10 (14 kg) · Press 4×10 (10 kg) · Rowing 4×8 (14 kg)</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Interval colline</div><div class="day-sub">2 km riscaldamento · 8×(1 min salita Z4 / jogging discesa) · 2 km defaticamento</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower specifico trail — 55 min</div><div class="day-sub">Affondo laterale 3×10 · Split squat 4×8/gamba · Nordic curl 3×6</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Corsa media progressiva</div><div class="day-sub">5 km a 6:30 · 5 km a 5:55/km · 2 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">16 km</span>Long run</div><div class="day-sub">Ritmo 6:25/km · Cerca percorso con almeno 100 m D+</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body — 60 min</div><div class="day-sub">Squat 4×8 (14 kg) · Hip thrust 4×10 (14 kg) · Press 4×10 (10 kg) · Rowing 4×8 (14 kg)</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Interval colline</div><div class="day-sub">2 km riscaldamento · 8×(1 min salita Z4 / jogging discesa) · 2 km defaticamento</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower specifico trail — 55 min</div><div class="day-sub">Affondo laterale 3×10 · Split squat 4×8/gamba · Nordic curl 3×6</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Corsa media progressiva</div><div class="day-sub">5 km a 6:30 · 5 km a 5:55/km · 2 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">16 km</span>Long run</div><div class="day-sub">Ritmo 6:25/km · Almeno 100 m D+</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="6" data-start="2026-07-07" data-end="2026-07-13" data-km="42">
-        <div class="week-strava-bar" id="wsb-6"></div>
+        <div class="week-status-bar future" id="wsb-6"><span class="wsb-label">Settimana 6</span><span class="wsb-km" id="wkm-6">42 km previsti</span></div>
+        <div class="week-progress" id="wprog-6"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-6" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-6"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 6 · 7–13 lug</span></div>
           <div class="week-focus">Resistenza specifica — soglia e colline</div>
-          <div class="week-km">Volume previsto: 42 km</div>
+          <div class="week-km-lbl">Volume previsto: 42 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza massima lower — 60 min</div><div class="day-sub">Squat 5×5 (14 kg) · Stacco rumeno 4×8 · Calf raise 4×15 · Hip thrust 4×8</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">11 km</span>Salite progressive</div><div class="day-sub">2 km riscaldamento · 6×(2 min salita Z3–Z4 / jogging discesa) · 3 km defaticamento</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Upper + core — 50 min</div><div class="day-sub">Press 4×10 (12 kg) · Rowing 4×10 (14 kg) · Curl 3×12 · Plank 3×45s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Soglia</div><div class="day-sub">3 km a 6:30 · 2×(3 km a 5:30/km / rec 3 min) · 2 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">18 km</span>Long run misto</div><div class="day-sub">Ritmo 6:25/km · Misto asfalto/sterrato · Ultimi 3 km a 5:55/km</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza massima lower — 60 min</div><div class="day-sub">Squat 5×5 (14 kg) · Stacco rumeno 4×8 · Calf raise 4×15 · Hip thrust 4×8</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">11 km</span>Salite progressive</div><div class="day-sub">2 km riscaldamento · 6×(2 min salita Z3–Z4 / jogging discesa) · 3 km defaticamento</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Upper + core — 50 min</div><div class="day-sub">Press 4×10 (12 kg) · Rowing 4×10 (14 kg) · Curl 3×12 · Plank 3×45s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Soglia</div><div class="day-sub">3 km a 6:30 · 2×(3 km a 5:30/km / rec 3 min) · 2 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">18 km</span>Long run misto</div><div class="day-sub">Ritmo 6:25/km · Misto asfalto/sterrato · Ultimi 3 km a 5:55/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="7" data-start="2026-07-14" data-end="2026-07-20" data-km="45">
-        <div class="week-strava-bar" id="wsb-7"></div>
+        <div class="week-status-bar future" id="wsb-7"><span class="wsb-label">Settimana 7</span><span class="wsb-km" id="wkm-7">45 km previsti</span></div>
+        <div class="week-progress" id="wprog-7"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-7" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-7"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 7 · 14–20 lug</span></div>
           <div class="week-focus">Picco di carico — long run chiave</div>
-          <div class="week-km">Volume previsto: 45 km</div>
+          <div class="week-km-lbl">Volume previsto: 45 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body pesante — 65 min</div><div class="day-sub">Squat 5×5 · Press unilaterale 4×8 · Stacco su una gamba 4×6 · Farmer carry 3×30m</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">11 km</span>Ripetute</div><div class="day-sub">2 km riscaldamento · 5×1000m a 5:20/km · Rec 90s · 2 km defaticamento</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower esplosivo — 55 min</div><div class="day-sub">Squat jump 3×8 · Affondo bulgaro 4×8 · Nordic curl 3×8 · Copenhagen plank 3×25s</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">14 km</span>Progressiva</div><div class="day-sub">4 km a 6:30 · 6 km a 5:50/km · 4 km a 5:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Carboidrati oggi sera. Long run più importante del piano domani.</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Long run chiave</div><div class="day-sub">Ritmo 6:25/km · Almeno 150 m D+ · Gel ogni 40 min · Ultimi 2 km a 5:55/km</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body pesante — 65 min</div><div class="day-sub">Squat 5×5 · Press unilaterale 4×8 · Stacco su una gamba 4×6 · Farmer carry 3×30m</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">11 km</span>Ripetute</div><div class="day-sub">2 km riscaldamento · 5×1000m a 5:20/km · Rec 90s · 2 km defaticamento</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower esplosivo — 55 min</div><div class="day-sub">Squat jump 3×8 · Affondo bulgaro 4×8 · Nordic curl 3×8 · Copenhagen plank 3×25s</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">14 km</span>Progressiva</div><div class="day-sub">4 km a 6:30 · 6 km a 5:50/km · 4 km a 5:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Carboidrati. Long run più importante domani.</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Long run chiave</div><div class="day-sub">Ritmo 6:25/km · 150 m D+ · Gel ogni 40 min · Ultimi 2 km a 5:55/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
-
     </div>
   </div>
 </div>
@@ -874,73 +465,76 @@ body {
     <div class="weeks-grid">
 
       <div class="week-card scarico" data-week="8" data-start="2026-07-21" data-end="2026-07-27" data-km="28">
-        <div class="week-strava-bar" id="wsb-8"></div>
+        <div class="week-status-bar future" id="wsb-8"><span class="wsb-label">Settimana 8 · Scarico</span><span class="wsb-km" id="wkm-8">28 km previsti</span></div>
+        <div class="week-progress" id="wprog-8"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-8" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-8"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 8 · 21–27 lug</span><span class="week-badge badge-scarico">Scarico</span></div>
           <div class="week-focus">Recupero dopo il picco — adattamento</div>
-          <div class="week-km">Volume previsto: 28 km</div>
+          <div class="week-km-lbl">Volume previsto: 28 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 40 min</div><div class="day-sub">Volumi ridotti al 60%</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">7 km</span>Fartlek leggero</div><div class="day-sub">3 km a 6:30 · 3×(90s a 5:30/km / 2 min a 6:30) · 2 km defaticamento</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Long run leggero</div><div class="day-sub">Ritmo 6:30/km · Niente salite</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 40 min</div><div class="day-sub">Volumi ridotti al 60%</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row rest-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">7 km</span>Fartlek leggero</div><div class="day-sub">3 km a 6:30 · 3×(90s a 5:30/km / 2 min a 6:30) · 2 km defaticamento</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Long run leggero</div><div class="day-sub">Ritmo 6:30/km · Niente salite</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="9" data-start="2026-07-28" data-end="2026-08-03" data-km="42">
-        <div class="week-strava-bar" id="wsb-9"></div>
+        <div class="week-status-bar future" id="wsb-9"><span class="wsb-label">Settimana 9</span><span class="wsb-km" id="wkm-9">42 km previsti</span></div>
+        <div class="week-progress" id="wprog-9"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-9" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-9"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 9 · 28 lug – 3 ago</span></div>
           <div class="week-focus">Ritmo gara — simulazioni specifiche</div>
-          <div class="week-km">Volume previsto: 42 km</div>
+          <div class="week-km-lbl">Volume previsto: 42 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza mantenimento — 55 min</div><div class="day-sub">Intensità alta, volume basso</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Trail/colline</div><div class="day-sub">150–200 m D+ ideale · Effort-based in salita</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Core specifico trail — 45 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Soglia a ritmo gara</div><div class="day-sub">3 km a 6:30 · 7 km a 5:50/km · 3 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Simulazione gara</div><div class="day-sub">Ritmo 6:15/km medio · Cerca D+ · Ultimi 4 km a 5:50/km</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza mantenimento — 55 min</div><div class="day-sub">Intensità alta, volume basso</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Trail/colline</div><div class="day-sub">150–200 m D+ · Effort-based in salita</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Core specifico trail — 45 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">13 km</span>Soglia a ritmo gara</div><div class="day-sub">3 km a 6:30 · 7 km a 5:50/km · 3 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">17 km</span>Simulazione gara</div><div class="day-sub">Ritmo 6:15/km medio · D+ · Ultimi 4 km a 5:50/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="10" data-start="2026-08-04" data-end="2026-08-10" data-km="45">
-        <div class="week-strava-bar" id="wsb-10"></div>
+        <div class="week-status-bar future" id="wsb-10"><span class="wsb-label">Settimana 10</span><span class="wsb-km" id="wkm-10">45 km previsti</span></div>
+        <div class="week-progress" id="wprog-10"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-10" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-10"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 10 · 4–10 ago</span></div>
           <div class="week-focus">Volume alto specifico — secondo picco</div>
-          <div class="week-km">Volume previsto: 45 km</div>
+          <div class="week-km-lbl">Volume previsto: 45 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower forza — 55 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Ripetute su salita</div><div class="day-sub">10×(45s sprint salita / jogging discesa)</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body mantenimento — 50 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">15 km</span>Medio lungo misto</div><div class="day-sub">5 km a 6:30 · 8 km a 6:00/km · 2 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Simulazione gara completa</div><div class="day-sub">Ritmo 6:15/km · D+ 200 m+ · Stesso gel della gara</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Lower forza — 55 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Ripetute su salita</div><div class="day-sub">10×(45s sprint salita / jogging discesa)</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body mantenimento — 50 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">15 km</span>Medio lungo misto</div><div class="day-sub">5 km a 6:30 · 8 km a 6:00/km · 2 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Simulazione gara completa</div><div class="day-sub">Ritmo 6:15/km · D+ 200 m+ · Stesso gel della gara</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card" data-week="11" data-start="2026-08-11" data-end="2026-08-17" data-km="43">
-        <div class="week-strava-bar" id="wsb-11"></div>
+        <div class="week-status-bar future" id="wsb-11"><span class="wsb-label">Settimana 11</span><span class="wsb-km" id="wkm-11">43 km previsti</span></div>
+        <div class="week-progress" id="wprog-11"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-11" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-11"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 11 · 11–17 ago</span></div>
           <div class="week-focus">Ultima settimana a pieno carico</div>
-          <div class="week-km">Volume previsto: 43 km</div>
+          <div class="week-km-lbl">Volume previsto: 43 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza reattiva — 55 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">14 km</span>Trail specifico</div><div class="day-sub">200–300 m D+ a 6:15/km medio</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 40 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Long run — ultimo grande</div><div class="day-sub">Ritmo 6:20/km · Outfit completo da gara · Da qui i km scendono</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Forza reattiva — 55 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">14 km</span>Trail specifico</div><div class="day-sub">200–300 m D+ a 6:15/km medio</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Full body leggero — 40 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">20 km</span>Long run — ultimo grande</div><div class="day-sub">Ritmo 6:20/km · Outfit completo da gara · Da qui i km scendono</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
-
     </div>
   </div>
 </div>
@@ -957,60 +551,62 @@ body {
     <div class="weeks-grid">
 
       <div class="week-card scarico" data-week="12" data-start="2026-08-18" data-end="2026-08-24" data-km="30">
-        <div class="week-strava-bar" id="wsb-12"></div>
+        <div class="week-status-bar future" id="wsb-12"><span class="wsb-label">Settimana 12 · Pre-taper</span><span class="wsb-km" id="wkm-12">30 km previsti</span></div>
+        <div class="week-progress" id="wprog-12"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-12" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-12"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 12 · 18–24 ago</span><span class="week-badge badge-scarico">Pre-tapering</span></div>
           <div class="week-focus">Scarico progressivo — -30% volume</div>
-          <div class="week-km">Volume previsto: 30 km</div>
+          <div class="week-km-lbl">Volume previsto: 30 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Mantenimento — 40 min</div><div class="day-sub">Volume al 60%</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Fartlek</div><div class="day-sub">4 km a 6:30 · 3×(3 min a 5:30/km) · 3 km a 6:30</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Corsa media</div><div class="day-sub">Ritmo 6:20/km · Ultimi 2 km a 5:50/km</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Mantenimento — 40 min</div><div class="day-sub">Volume al 60%</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">8 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Recupero attivo</div></div><div class="day-check"></div></div>
+        <div class="day-row rest-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">10 km</span>Fartlek</div><div class="day-sub">4 km a 6:30 · 3×(3 min a 5:30/km) · 3 km a 6:30</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">12 km</span>Corsa media</div><div class="day-sub">Ritmo 6:20/km · Ultimi 2 km a 5:50/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card scarico" data-week="13" data-start="2026-08-25" data-end="2026-08-31" data-km="20">
-        <div class="week-strava-bar" id="wsb-13"></div>
+        <div class="week-status-bar future" id="wsb-13"><span class="wsb-label">Settimana 13 · Tapering</span><span class="wsb-km" id="wkm-13">20 km previsti</span></div>
+        <div class="week-progress" id="wprog-13"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-13" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-13"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 13 · 25–31 ago</span><span class="week-badge badge-scarico">Tapering</span></div>
           <div class="week-focus">Scarico profondo — freschezza muscolare</div>
-          <div class="week-km">Volume previsto: 20 km</div>
+          <div class="week-km-lbl">Volume previsto: 20 km</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Sessione simbolica — 30 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">6 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo o yoga</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Solo core e mobilità — 20 min</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">5 km</span>Attivazione + strides</div><div class="day-sub">Ritmo 6:30/km + 4×20s strides a 5:10/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Pettorale, scarpe, nutrition: tutto pronto?</div></div></div>
-        <div class="day-row"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Ultima uscita normale</div><div class="day-sub">Ritmo 6:30/km · Prossima domenica: gara.</div></div></div>
+        <div class="day-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Sessione simbolica — 30 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">6 km</span>Corsa facile</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo o yoga</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-gym">Pesi</span><div class="day-content"><div class="day-main">Solo core e mobilità — 20 min</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">5 km</span>Attivazione + strides</div><div class="day-sub">Ritmo 6:30/km + 4×20s strides a 5:10/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">Pettorale, scarpe, nutrition: tutto pronto?</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Dom"><span class="day-lbl">Dom</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">9 km</span>Ultima uscita normale</div><div class="day-sub">Ritmo 6:30/km · Prossima domenica: gara.</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
       </div>
 
       <div class="week-card main-race" data-week="14" data-start="2026-09-01" data-end="2026-09-06" data-km="7">
-        <div class="week-strava-bar" id="wsb-14"></div>
+        <div class="week-status-bar future" id="wsb-14"><span class="wsb-label">Settimana 14 · Race week</span><span class="wsb-km" id="wkm-14">7 km + gara</span></div>
+        <div class="week-progress" id="wprog-14"><div class="week-progress-track"><div class="week-progress-fill ok" id="wfill-14" style="width:0%"></div></div></div>
         <div class="week-ai-note" id="wan-14"></div>
         <div class="week-head">
           <div class="week-name-row"><span class="week-name">Settimana 14 · 1–6 set</span><span class="week-badge badge-gara">Race week</span></div>
           <div class="week-focus">Corsa dei 5 Laghi — 6 settembre 2026</div>
-          <div class="week-km">Volume: 7 km + gara</div>
+          <div class="week-km-lbl">Volume: 7 km + gara</div>
         </div>
-        <div class="day-row"><span class="day-lbl">Lun</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">2,5 L acqua · Carboidrati nella dieta</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">4 km</span>Gambe attive</div><div class="day-sub">Ritmo 6:30/km + 3×20s strides</div></div></div>
-        <div class="day-row"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div></div>
-        <div class="day-row"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">3 km</span>Corsetta leggera</div><div class="day-sub">Ritmo 6:30/km</div></div></div>
-        <div class="day-row"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Ritiro pettorale — Ivrea</div><div class="day-sub">Cena con carboidrati · A letto entro le 22:00</div></div></div>
-        <div class="day-row"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Giorno pre-gara</div><div class="day-sub">Pasta party · 8h sonno · Scarpe e pettorale pronti</div></div></div>
+        <div class="day-row rest-row" data-day="Lun"><span class="day-lbl">Lun</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div><div class="day-sub">2,5 L acqua · Carboidrati nella dieta</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Mar"><span class="day-lbl">Mar</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">4 km</span>Gambe attive</div><div class="day-sub">Ritmo 6:30/km + 3×20s strides</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Mer"><span class="day-lbl">Mer</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Riposo completo</div></div><div class="day-check"></div></div>
+        <div class="day-row" data-day="Gio"><span class="day-lbl">Gio</span><span class="tag tag-run">Corsa</span><div class="day-content"><div class="day-main"><span class="day-km">3 km</span>Corsetta leggera</div><div class="day-sub">Ritmo 6:30/km</div></div><div class="day-check" onclick="toggleCheck(this)"></div></div>
+        <div class="day-row rest-row" data-day="Ven"><span class="day-lbl">Ven</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Ritiro pettorale — Ivrea</div><div class="day-sub">Cena con carboidrati · A letto entro le 22:00</div></div><div class="day-check"></div></div>
+        <div class="day-row rest-row" data-day="Sab"><span class="day-lbl">Sab</span><span class="tag tag-rest">Riposo</span><div class="day-content"><div class="day-main">Giorno pre-gara</div><div class="day-sub">Pasta party · 8h sonno · Scarpe e pettorale pronti</div></div><div class="day-check"></div></div>
         <div class="race-day-row">
           <div class="race-day-label">Domenica 6 settembre 2026</div>
           <div class="race-day-title">Corsa dei 5 Laghi · 24,5 km / 440 D+</div>
-          <div class="race-day-sub">Primi 5 km a 6:20/km · Salite a RPE non a ritmo · Km 10–18 a 5:55–6:05/km · Ultimi 6 km tutto quello che hai · Obiettivo: 2h30'–2h35'</div>
+          <div class="race-day-sub">Primi 5 km a 6:20/km · Salite a RPE · Km 10–18 a 5:55–6:05/km · Ultimi 6 km tutto quello che hai · Obiettivo: 2h30'–2h35'</div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
@@ -1018,520 +614,298 @@ body {
 </div><!-- /main -->
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async function() {
+
+const CLIENT_ID          = '255113';
+const CLIENT_SECRET      = 'f93b63487a5ac3c65c61645e7c1d4720b949ffcb';
 const OURA_CLIENT_ID     = '1c217285-16f3-40c1-936b-ace036847d8f';
 const OURA_CLIENT_SECRET = 'rIfb5PRSJmtfpTrQyA83kMyFgPAJdB0gXYH06882Tas';
-const OURA_REDIRECT_URI  = window.location.href.split('?')[0].split('#')[0];
-const CLIENT_ID     = '255113';
-const CLIENT_SECRET = 'f93b63487a5ac3c65c61645e7c1d4720b949ffcb';
-const REDIRECT_URI  = window.location.href.split('?')[0].split('#')[0];
+const BASE_URL           = window.location.origin + window.location.pathname;
+const TOTAL_KM           = 500;
 
-// ─── PIANO: settimane con km previsti ────────────────────
-let _recentRuns = [];
-let _ouraDataCache = null;
 const WEEKS = Array.from(document.querySelectorAll('[data-week]')).map(el => ({
-  n:     parseInt(el.dataset.week),
-  start: new Date(el.dataset.start + 'T00:00:00'),
-  end:   new Date(el.dataset.end   + 'T23:59:59'),
-  km:    parseFloat(el.dataset.km),
-  el
+  n: parseInt(el.dataset.week), start: new Date(el.dataset.start+'T00:00:00'),
+  end: new Date(el.dataset.end+'T23:59:59'), km: parseFloat(el.dataset.km), el
 }));
 
-// ─── TOKEN STORAGE ───────────────────────────────────────
-function saveToken(data) {
-  localStorage.setItem('strava_token', JSON.stringify({
-    access_token:  data.access_token,
-    refresh_token: data.refresh_token,
-    expires_at:    data.expires_at
-  }));
+let _recentRuns = [], _ouraCache = null;
+
+// ── COUNTDOWN ──────────────────────────────────────────────
+const now = new Date(), msDay = 86400000;
+const dm = Math.ceil((new Date('2026-06-26') - now) / msDay);
+const dt = Math.ceil((new Date('2026-09-06') - now) / msDay);
+const elM = document.getElementById('cd-mezza'), elT = document.getElementById('cd-trail');
+if (elM) elM.innerHTML = dm > 0 ? `${dm}<span>giorni</span>` : dm===0 ? 'Oggi!<span></span>' : 'Passata<span></span>';
+if (elT) elT.innerHTML = dt > 0 ? `${dt}<span>giorni</span>` : dt===0 ? 'Oggi!<span></span>' : 'Passata<span></span>';
+
+// ── DATA OGGI ──────────────────────────────────────────────
+document.getElementById('adviceDate').textContent = now.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'});
+
+// ── BADGE OGGI + EVIDENZIA SETTIMANA CORRENTE ──────────────
+const days = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+const todayStr = now.toISOString().split('T')[0];
+const todayDay = days[now.getDay()];
+
+WEEKS.forEach(w => {
+  if (now >= w.start && now <= w.end) {
+    w.el.classList.add('current-week');
+    const wsb = document.getElementById(`wsb-${w.n}`);
+    if (wsb) { wsb.className = 'week-status-bar current'; wsb.querySelector('.wsb-label').textContent = '📍 Settimana in corso'; }
+    // badge "Oggi" sul giorno giusto
+    w.el.querySelectorAll('.day-row').forEach(row => {
+      if (row.dataset.day === todayDay) {
+        row.classList.add('today-row');
+        const nameRow = w.el.querySelector('.week-name-row');
+        if (nameRow && !nameRow.querySelector('.badge-oggi')) {
+          const b = document.createElement('span');
+          b.className = 'week-badge badge-oggi'; b.textContent = 'Oggi: '+todayDay;
+          nameRow.appendChild(b);
+        }
+      }
+    });
+  } else if (now > w.end) {
+    w.el.classList.add('past-week');
+  }
+});
+
+// ── SPUNTE MANUALI ─────────────────────────────────────────
+function checkKey(el) {
+  const row = el.closest('.day-row');
+  const week = el.closest('[data-week]');
+  return `check_w${week?.dataset.week}_${row?.dataset.date || row?.dataset.day}`;
 }
-function loadToken() {
-  try { return JSON.parse(localStorage.getItem('strava_token')); }
-  catch { return null; }
+function loadChecks() {
+  document.querySelectorAll('.day-check[onclick]').forEach(el => {
+    const k = checkKey(el);
+    const v = localStorage.getItem(k);
+    if (v === '1') el.classList.add('checked');
+  });
 }
+window.toggleCheck = function(el) {
+  const k = checkKey(el);
+  if (el.classList.contains('checked')) { el.classList.remove('checked'); localStorage.removeItem(k); }
+  else { el.classList.add('checked'); localStorage.setItem(k, '1'); }
+  updateManualProgress();
+};
+function updateManualProgress() {
+  // aggiorna progress bar header con spunte manuali se no Strava
+  if (!loadToken()) {
+    const total = document.querySelectorAll('.day-check[onclick]').length;
+    const done  = document.querySelectorAll('.day-check.checked').length;
+    const pct   = total > 0 ? Math.round(done/total*100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLbl').textContent = `${done} / ${total} sessioni completate`;
+  }
+}
+loadChecks();
+updateManualProgress();
+
+// ── TOKEN STORAGE ─────────────────────────────────────────
+function saveToken(d) { localStorage.setItem('strava_token', JSON.stringify({access_token:d.access_token,refresh_token:d.refresh_token,expires_at:d.expires_at})); }
+function loadToken() { try { return JSON.parse(localStorage.getItem('strava_token')); } catch { return null; } }
 function clearToken() { localStorage.removeItem('strava_token'); }
-
-// ─── AUTH ────────────────────────────────────────────────
-function handleStravaAuth() {
-  const token = loadToken();
-  if (token) { clearToken(); location.reload(); return; }
-  const url = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=activity:read_all`;
-  window.location.href = url;
-}
-
-async function exchangeCode(code) {
-  const r = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ client_id: CLIENT_ID, client_secret: CLIENT_SECRET, code, grant_type: 'authorization_code' })
-  });
-  return r.json();
-}
-
-async function refreshAccessToken(refresh_token) {
-  const r = await fetch('https://www.strava.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ client_id: CLIENT_ID, client_secret: CLIENT_SECRET, refresh_token, grant_type: 'refresh_token' })
-  });
-  return r.json();
-}
-
-async function getValidToken() {
-  let token = loadToken();
-  if (!token) return null;
-  if (Date.now() / 1000 > token.expires_at - 300) {
-    setLoading('Rinnovo token Strava...');
-    const fresh = await refreshAccessToken(token.refresh_token);
-    if (fresh.access_token) { saveToken(fresh); token = fresh; }
-    else { clearToken(); return null; }
-  }
-  return token.access_token;
-}
-
-// ─── STRAVA API ──────────────────────────────────────────
-async function fetchActivities(accessToken, after, before) {
-  const url = `https://www.strava.com/api/v3/athlete/activities?after=${Math.floor(after/1000)}&before=${Math.floor(before/1000)}&per_page=100`;
-  const r = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } });
-  return r.json();
-}
-
-// ─── CLAUDE AI ANALYSIS ──────────────────────────────────
-async function analyzeWeekWithClaude(weekNum, plannedKm, actualKm, activities) {
-  const actSummary = activities.map(a =>
-    `${a.name}: ${(a.distance/1000).toFixed(1)} km, ${Math.round(a.moving_time/60)} min, ${a.elevation_gain?.toFixed(0) || 0}m D+`
-  ).join('\n');
-
-  const prompt = `Sei un coach di corsa. Analizza la settimana ${weekNum} del piano di allenamento per la Corsa dei 5 Laghi (24,5 km, 440 D+) di Lorena.
-
-Piano previsto: ${plannedKm} km
-Realizzato: ${actualKm.toFixed(1)} km
-Attività registrate su Strava:
-${actSummary || 'Nessuna attività registrata'}
-
-Scrivi UN commento breve (max 2 righe) in italiano, diretto e personale, su come è andata la settimana e un consiglio per la prossima. Tono da coach, non da chatbot.`;
-
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 150,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await r.json();
-    return data.content?.[0]?.text || '';
-  } catch { return ''; }
-}
-
-// ─── UI HELPERS ──────────────────────────────────────────
-function setLoading(msg) {
-  document.getElementById('loadingText').textContent = msg;
-  document.getElementById('loadingOverlay').classList.add('visible');
-}
-function hideLoading() {
-  document.getElementById('loadingOverlay').classList.remove('visible');
-}
-function setStravaStatus(connected, name) {
-  const dot  = document.getElementById('stravaDot');
-  const text = document.getElementById('stravaStatusText');
-  const btn  = document.getElementById('stravaBtn');
-  if (connected) {
-    dot.classList.add('connected');
-    text.textContent = name ? `Connessa come ${name}` : 'Connessa a Strava';
-    btn.textContent = 'Disconnetti';
-    document.getElementById('syncTime').textContent = `Aggiornato ${new Date().toLocaleTimeString('it-IT', {hour:'2-digit',minute:'2-digit'})}`;
-  } else {
-    dot.classList.remove('connected');
-    text.textContent = 'Non connessa a Strava';
-    btn.textContent = 'Connetti Strava';
-  }
-}
-
-function renderWeek(week, actualKm, status, aiNote) {
-  const bar  = document.getElementById(`wsb-${week.n}`);
-  const note = document.getElementById(`wan-${week.n}`);
-  const pct  = week.km > 0 ? Math.round(actualKm / week.km * 100) : 0;
-
-  bar.className = `week-strava-bar visible ${status}`;
-
-  const labels = { ok: '✓ Settimana completata', warn: '⚡ Volume parziale', ko: '✗ Sotto volume', future: '→ In arrivo' };
-  bar.innerHTML = `<span class="wsb-label">${labels[status]}</span><span class="wsb-detail">${actualKm.toFixed(1)} / ${week.km} km${status !== 'future' ? ` (${pct}%)` : ''}</span>`;
-
-  if (aiNote) {
-    note.className = 'week-ai-note visible';
-    note.textContent = aiNote;
-  }
-}
-
-// ─── MAIN SYNC ───────────────────────────────────────────
-async function syncWithStrava(accessToken) {
-  const planStart = new Date('2026-06-02T00:00:00');
-  const planEnd   = new Date('2026-09-06T23:59:59');
-  const now       = new Date();
-
-  setLoading('Scarico attività da Strava...');
-  const activities = await fetchActivities(accessToken, planStart, planEnd < now ? planEnd : now);
-
-  const runs = Array.isArray(activities)
-    ? activities.filter(a => a.sport_type === 'Run' || a.type === 'Run')
-    : [];
-
-  // salva corse degli ultimi 7 giorni per il consiglio
-  const sevenDaysAgo = new Date(Date.now() - 7*86400000);
-  _recentRuns = runs.filter(r => new Date(r.start_date_local) >= sevenDaysAgo);
-
-  for (const week of WEEKS) {
-    const weekEnd   = week.end < now ? week.end : null;
-    const isPast    = week.end < now;
-    const isCurrent = week.start <= now && now <= week.end;
-
-    if (!isPast && !isCurrent) {
-      renderWeek(week, 0, 'future', '');
-      continue;
-    }
-
-    const weekRuns = runs.filter(a => {
-      const d = new Date(a.start_date_local);
-      return d >= week.start && d <= week.end;
-    });
-    const actualKm = weekRuns.reduce((s, a) => s + a.distance / 1000, 0);
-    const pct = week.km > 0 ? actualKm / week.km : 0;
-
-    let status;
-    if (isCurrent) {
-      status = pct >= 0.5 ? 'ok' : pct >= 0.25 ? 'warn' : 'ko';
-    } else {
-      status = pct >= 0.85 ? 'ok' : pct >= 0.6 ? 'warn' : 'ko';
-    }
-
-    setLoading(`Analisi settimana ${week.n} con Claude...`);
-    const aiNote = (isPast || isCurrent) ? await analyzeWeekWithClaude(week.n, week.km, actualKm, weekRuns) : '';
-    renderWeek(week, actualKm, status, aiNote);
-  }
-}
-
-// ─── OURA AUTH ───────────────────────────────────────────
-function saveOuraToken(data) {
-  localStorage.setItem('oura_token', JSON.stringify({
-    access_token:  data.access_token,
-    refresh_token: data.refresh_token,
-    expires_at:    Math.floor(Date.now()/1000) + (data.expires_in || 86400)
-  }));
-}
-function loadOuraToken() {
-  try { return JSON.parse(localStorage.getItem('oura_token')); }
-  catch { return null; }
-}
+function saveOuraToken(d) { localStorage.setItem('oura_token', JSON.stringify({access_token:d.access_token,refresh_token:d.refresh_token,expires_at:Math.floor(Date.now()/1000)+(d.expires_in||86400)})); }
+function loadOuraToken() { try { return JSON.parse(localStorage.getItem('oura_token')); } catch { return null; } }
 function clearOuraToken() { localStorage.removeItem('oura_token'); }
 
-function handleOuraAuth() {
-  const token = loadOuraToken();
-  if (token) { clearOuraToken(); location.reload(); return; }
-  const scopes = 'email personal daily heartrate workout session';
-  const url = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(OURA_REDIRECT_URI)}&response_type=code&scope=${encodeURIComponent(scopes)}&state=oura`;
-  window.location.href = url;
-}
-
-async function exchangeOuraCode(code) {
-  const r = await fetch('https://api.ouraring.com/oauth/token', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type:    'authorization_code',
-      code,
-      client_id:     OURA_CLIENT_ID,
-      client_secret: OURA_CLIENT_SECRET,
-      redirect_uri:  OURA_REDIRECT_URI
-    })
-  });
+// ── AUTH STRAVA ───────────────────────────────────────────
+window.handleStravaAuth = function() {
+  if (loadToken()) { clearToken(); location.reload(); return; }
+  location.href = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=activity:read_all&state=strava`;
+};
+async function exchangeStrava(code) {
+  const r = await fetch('https://www.strava.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_id:CLIENT_ID,client_secret:CLIENT_SECRET,code,grant_type:'authorization_code'})});
   return r.json();
 }
-
-async function getValidOuraToken() {
-  let token = loadOuraToken();
-  if (!token) return null;
-  if (Date.now()/1000 > token.expires_at - 300) {
-    const r = await fetch('https://api.ouraring.com/oauth/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        grant_type:    'refresh_token',
-        refresh_token: token.refresh_token,
-        client_id:     OURA_CLIENT_ID,
-        client_secret: OURA_CLIENT_SECRET
-      })
-    });
-    const fresh = await r.json();
-    if (fresh.access_token) { saveOuraToken(fresh); token = fresh; }
-    else { clearOuraToken(); return null; }
+async function getStravaToken() {
+  let t = loadToken(); if (!t) return null;
+  if (Date.now()/1000 > t.expires_at-300) {
+    const r = await fetch('https://www.strava.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_id:CLIENT_ID,client_secret:CLIENT_SECRET,refresh_token:t.refresh_token,grant_type:'refresh_token'})});
+    const f = await r.json(); if (f.access_token){saveToken(f);return f.access_token;} clearToken(); return null;
   }
-  return token.access_token;
+  return t.access_token;
 }
 
-async function fetchOuraToday(accessToken) {
-  const today = new Date().toISOString().split('T')[0];
-  const yesterday = new Date(Date.now()-86400000).toISOString().split('T')[0];
-  const headers = { Authorization: `Bearer ${accessToken}` };
-  const [readRes, sleepRes] = await Promise.all([
-    fetch(`https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${yesterday}&end_date=${today}`, {headers}),
-    fetch(`https://api.ouraring.com/v2/usercollection/daily_sleep?start_date=${yesterday}&end_date=${today}`, {headers})
-  ]);
-  const [readData, sleepData] = await Promise.all([readRes.json(), sleepRes.json()]);
-  const readiness = readData.data?.slice(-1)[0];
-  const sleep     = sleepData.data?.slice(-1)[0];
-  return { readiness, sleep };
+// ── AUTH OURA ─────────────────────────────────────────────
+window.handleOuraAuth = function() {
+  if (loadOuraToken()) { clearOuraToken(); location.reload(); return; }
+  location.href = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=${encodeURIComponent('email personal daily heartrate workout session')}&state=oura`;
+};
+async function exchangeOura(code) {
+  const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'authorization_code',code,client_id:OURA_CLIENT_ID,client_secret:OURA_CLIENT_SECRET,redirect_uri:BASE_URL})});
+  return r.json();
 }
-
-function scoreClass(val, thresholds) {
-  if (val >= thresholds[1]) return 'good';
-  if (val >= thresholds[0]) return 'warn';
-  return 'bad';
-}
-
-async function syncOura(accessToken) {
-  const { readiness, sleep } = await fetchOuraToday(accessToken);
-
-  const dot  = document.getElementById('ouraDot');
-  const text = document.getElementById('ouraStatusText');
-  const btn  = document.getElementById('ouraBtn');
-  const metrics = document.getElementById('ouraMetrics');
-
-  dot.classList.add('connected');
-  text.textContent = 'Oura Ring connesso — dati di oggi';
-  btn.textContent  = 'Disconnetti Oura';
-  metrics.style.display = 'flex';
-
-  if (readiness) {
-    const score = readiness.score;
-    const hrv   = readiness.contributors?.hrv_balance;
-    const rhr   = readiness.contributors?.resting_heart_rate;
-    const el    = document.getElementById('ouraReadiness');
-    el.textContent = score ?? '—';
-    if (score) el.className = 'oura-metric-val ' + scoreClass(score, [60, 80]);
-
-    if (hrv !== undefined) {
-      const eh = document.getElementById('ouraHRV');
-      eh.textContent = hrv;
-      eh.className = 'oura-metric-val ' + scoreClass(hrv, [60, 80]);
-    }
-    if (rhr !== undefined) {
-      const er = document.getElementById('ouraRHR');
-      er.textContent = rhr;
-      // FC riposo: più basso è meglio, invertiamo
-      er.className = 'oura-metric-val ' + (rhr <= 55 ? 'good' : rhr <= 65 ? 'warn' : 'bad');
-    }
+async function getOuraToken() {
+  let t = loadOuraToken(); if (!t) return null;
+  if (Date.now()/1000 > t.expires_at-300) {
+    const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'refresh_token',refresh_token:t.refresh_token,client_id:OURA_CLIENT_ID,client_secret:OURA_CLIENT_SECRET})});
+    const f = await r.json(); if (f.access_token){saveOuraToken(f);return f.access_token;} clearOuraToken(); return null;
   }
-  if (sleep) {
-    const score = sleep.score;
-    const el = document.getElementById('ouraSleep');
-    el.textContent = score ?? '—';
-    if (score) el.className = 'oura-metric-val ' + scoreClass(score, [60, 80]);
-  }
-
-  _ouraDataCache = { readiness, sleep };
-
-  // genera consiglio con dati Oura
-  const planInfo = getTodayPlanInfo();
-  await generateDailyAdvice(_ouraDataCache, _recentRuns, planInfo);
+  return t.access_token;
 }
 
-// ─── DAILY ADVICE ────────────────────────────────────────
-function getTodayPlanInfo() {
-  const now = new Date();
-  const days = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
-  const todayDay = days[now.getDay()];
-  const todayStr = now.toISOString().split('T')[0];
+// ── UI ────────────────────────────────────────────────────
+function setLoading(msg) { document.getElementById('loadingText').textContent=msg; document.getElementById('loadingOverlay').classList.add('visible'); }
+function hideLoading() { document.getElementById('loadingOverlay').classList.remove('visible'); }
+function setStravaUI(on, name) {
+  document.getElementById('stravaDot').classList.toggle('on', on);
+  document.getElementById('stravaStatusText').textContent = on ? (name?`Connessa come ${name}`:'Connessa a Strava') : 'Non connessa a Strava';
+  document.getElementById('stravaBtn').textContent = on ? 'Disconnetti' : 'Connetti Strava';
+  if (on) document.getElementById('syncTime').textContent = `Aggiornato ${now.toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'})}`;
+}
+function sc(v,lo,hi){ return v>=hi?'good':v>=lo?'warn':'bad'; }
 
-  // trova la settimana corrente
-  let currentWeek = null;
+function renderWeek(week, actualKm, status, aiNote) {
+  const bar   = document.getElementById(`wsb-${week.n}`);
+  const prog  = document.getElementById(`wprog-${week.n}`);
+  const fill  = document.getElementById(`wfill-${week.n}`);
+  const note  = document.getElementById(`wan-${week.n}`);
+  const kmEl  = document.getElementById(`wkm-${week.n}`);
+  if (!bar) return;
+  const pct = week.km>0 ? Math.min(100,Math.round(actualKm/week.km*100)) : 0;
+  const labels = {ok:'✓ Completata',warn:'⚡ Volume parziale',ko:'✗ Sotto volume',future:'→ In arrivo',current:'📍 Settimana in corso'};
+  if (status !== 'current') {
+    bar.className = `week-status-bar ${status}`;
+    bar.querySelector('.wsb-label').textContent = labels[status] || '';
+  }
+  if (kmEl && status !== 'future') kmEl.textContent = `${actualKm.toFixed(1)} / ${week.km} km (${pct}%)`;
+  if (prog && fill && status !== 'future') {
+    prog.classList.add('visible');
+    fill.style.width = pct+'%';
+    fill.className = `week-progress-fill ${status==='ok'?'ok':status==='warn'?'warn':'ko'}`;
+  }
+  if (aiNote && note) { note.className='week-ai-note visible'; note.textContent=aiNote; }
+}
+
+// ── STRAVA SYNC ───────────────────────────────────────────
+async function syncStrava(token) {
+  setLoading('Scarico attività da Strava...');
+  const start=new Date('2026-06-02'), end=new Date('2026-09-06T23:59:59');
+  const url=`https://www.strava.com/api/v3/athlete/activities?after=${Math.floor(start/1000)}&before=${Math.floor(Math.min(end,now)/1000)}&per_page=100`;
+  const r=await fetch(url,{headers:{Authorization:`Bearer ${token}`}});
+  const all=await r.json();
+  const runs=Array.isArray(all)?all.filter(a=>a.sport_type==='Run'||a.type==='Run'):[];
+  _recentRuns=runs.filter(r=>new Date(r.start_date_local)>=new Date(Date.now()-7*msDay));
+
+  let totalDone=0;
   for (const week of WEEKS) {
-    if (now >= week.start && now <= week.end) {
-      currentWeek = week;
-      break;
+    const isPast=week.end<now, isCurrent=week.start<=now&&now<=week.end;
+    if (!isPast&&!isCurrent) { if(!week.el.classList.contains('current-week')) renderWeek(week,0,'future',''); continue; }
+    const weekRuns=runs.filter(a=>{const d=new Date(a.start_date_local);return d>=week.start&&d<=week.end;});
+    const actualKm=weekRuns.reduce((s,a)=>s+a.distance/1000,0);
+    totalDone+=actualKm;
+    const pct=week.km>0?actualKm/week.km:0;
+    const status=week.el.classList.contains('current-week')?'current':(isCurrent?(pct>=0.5?'ok':pct>=0.25?'warn':'ko'):(pct>=0.85?'ok':pct>=0.6?'warn':'ko'));
+    setLoading(`Analisi settimana ${week.n}...`);
+    let note='';
+    if (isPast||isCurrent) {
+      const acts=weekRuns.map(a=>`${a.name}: ${(a.distance/1000).toFixed(1)} km, ${Math.round(a.moving_time/60)} min`).join('\n');
+      const prompt=`Sei il coach di Lorena per la Corsa dei 5 Laghi (24,5km, 440D+) il 6 set 2026. Sett.${week.n}: previsto ${week.km}km, fatto ${actualKm.toFixed(1)}km. ${acts?'Corse:\n'+acts:'Nessuna corsa.'} Scrivi 1-2 frasi feedback in italiano, diretto, da coach.`;
+      try{const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:100,messages:[{role:'user',content:prompt}]})});const d=await res.json();note=d.content?.[0]?.text||'';}catch{}
     }
+    renderWeek(week,actualKm,status,note);
   }
-  if (!currentWeek) return null;
-
-  // trova il giorno nel DOM
-  const card = currentWeek.el;
-  const rows = card.querySelectorAll('.day-row');
-  let todayRow = null;
-  for (const row of rows) {
-    const lbl = row.querySelector('.day-lbl')?.textContent?.trim();
-    if (lbl === todayDay) { todayRow = row; break; }
-  }
-
-  const tag     = todayRow?.querySelector('.tag')?.textContent?.trim() || 'Riposo';
-  const main    = todayRow?.querySelector('.day-main')?.textContent?.trim() || '';
-  const sub     = todayRow?.querySelector('.day-sub')?.textContent?.trim() || '';
-  const weekNum = currentWeek.n;
-  const focus   = card.querySelector('.week-focus')?.textContent?.trim() || '';
-
-  return { todayDay, tag, main, sub, weekNum, focus, weekKm: currentWeek.km };
+  // progress bar header
+  const pctTotal=Math.round(totalDone/TOTAL_KM*100);
+  document.getElementById('progressFill').style.width=Math.min(100,pctTotal)+'%';
+  document.getElementById('progressLbl').textContent=`${totalDone.toFixed(0)} / ${TOTAL_KM} km completati`;
 }
 
-async function generateDailyAdvice(ouraData, recentRuns, planInfo) {
-  if (!planInfo) return;
+// ── OURA SYNC ─────────────────────────────────────────────
+async function syncOura(token) {
+  const today=now.toISOString().split('T')[0], yday=new Date(Date.now()-msDay).toISOString().split('T')[0];
+  const h={Authorization:`Bearer ${token}`};
+  const [rr,sr]=await Promise.all([
+    fetch(`https://api.ouraring.com/v2/usercollection/daily_readiness?start_date=${yday}&end_date=${today}`,{headers:h}),
+    fetch(`https://api.ouraring.com/v2/usercollection/daily_sleep?start_date=${yday}&end_date=${today}`,{headers:h})
+  ]);
+  const [rd,sd]=await Promise.all([rr.json(),sr.json()]);
+  const readiness=rd.data?.slice(-1)[0], sleep=sd.data?.slice(-1)[0];
+  document.getElementById('ouraDot').classList.add('on');
+  document.getElementById('ouraStatusText').textContent='Oura Ring connesso';
+  document.getElementById('ouraBtn').textContent='Disconnetti Oura';
+  document.getElementById('ouraMetrics').style.display='flex';
+  if (readiness) {
+    const s=readiness.score, el=document.getElementById('ouraReadiness');
+    if(s!=null){el.textContent=s;el.className='oura-metric-val '+sc(s,60,80);}
+    const hrv=readiness.contributors?.hrv_balance;
+    if(hrv!=null){const e=document.getElementById('ouraHRV');e.textContent=hrv;e.className='oura-metric-val '+sc(hrv,60,80);}
+    const rhr=readiness.contributors?.resting_heart_rate;
+    if(rhr!=null){const e=document.getElementById('ouraRHR');e.textContent=rhr;e.className='oura-metric-val '+(rhr<=55?'good':rhr<=65?'warn':'bad');}
+  }
+  if (sleep){const s=sleep.score,el=document.getElementById('ouraSleep');if(s!=null){el.textContent=s;el.className='oura-metric-val '+sc(s,60,80);}}
+  _ouraCache={readiness,sleep};
+}
 
-  const panel = document.getElementById('dailyAdvicePanel');
-  const textEl = document.getElementById('adviceText');
-  const workoutEl = document.getElementById('adviceWorkout');
-  const metaEl = document.getElementById('adviceMeta');
-  const dateEl = document.getElementById('adviceDate');
-
-  panel.style.display = 'block';
-  textEl.className = 'daily-advice-text loading';
-  textEl.textContent = 'Claude sta analizzando i tuoi dati...';
-  workoutEl.textContent = planInfo.tag + ' · ' + planInfo.main.replace(/^\d+ km/, '').trim();
-
-  const now = new Date();
-  dateEl.textContent = now.toLocaleDateString('it-IT', {weekday:'long', day:'numeric', month:'long'});
-
-  // prepara contesto
-  const ouraCtx = ouraData ? `
-Dati Oura di oggi:
-- Prontezza: ${ouraData.readiness?.score ?? 'non disponibile'}/100
-- Sonno: ${ouraData.sleep?.score ?? 'non disponibile'}/100
-- HRV balance: ${ouraData.readiness?.contributors?.hrv_balance ?? 'non disponibile'}
-- FC riposo: ${ouraData.readiness?.contributors?.resting_heart_rate ?? 'non disponibile'} bpm` 
-  : 'Dati Oura non disponibili.';
-
-  const runsCtx = recentRuns.length > 0
-    ? 'Ultime corse (7 giorni):
-' + recentRuns.slice(0,5).map(r =>
-        `- ${new Date(r.start_date_local).toLocaleDateString('it-IT',{weekday:'short'})}: ${(r.distance/1000).toFixed(1)} km in ${Math.round(r.moving_time/60)} min`
-      ).join('
-')
-    : 'Nessuna corsa negli ultimi 7 giorni.';
-
-  const prompt = `Sei il coach personale di Lorena, che si sta preparando per la Corsa dei 5 Laghi (24,5 km, 440 D+) il 6 settembre 2026. Obiettivo: 2h30'.
-
-Settimana ${planInfo.weekNum} del piano (focus: ${planInfo.focus}).
-Oggi è ${planInfo.todayDay} e il piano prevede: ${planInfo.main} ${planInfo.sub ? '— ' + planInfo.sub : ''}
-
-${ouraCtx}
-
-${runsCtx}
-
-Scrivi UN consiglio personalizzato per oggi in italiano. Max 2-3 frasi. Tono diretto, caldo, da coach che conosce bene Lorena. Considera i dati di recupero per suggerire se spingere, mantenere o alleggerire. Se oggi è riposo, dai un consiglio su come ottimizzarlo. Non usare elenchi puntati, scrivi in modo fluido.`;
-
-  try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 200,
-        messages: [{ role: 'user', content: prompt }]
-      })
+// ── CONSIGLIO GIORNALIERO ─────────────────────────────────
+async function generateAdvice() {
+  const week=WEEKS.find(w=>now>=w.start&&now<=w.end);
+  const days2=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  const todayDay2=days2[now.getDay()];
+  let todayMain='', todaySub='', todayTag='Riposo';
+  if (week) {
+    week.el.querySelectorAll('.day-row').forEach(row=>{
+      if(row.dataset.day===todayDay2){
+        todayTag=row.querySelector('.tag')?.textContent?.trim()||'Riposo';
+        todayMain=row.querySelector('.day-main')?.textContent?.trim()||'';
+        todaySub=row.querySelector('.day-sub')?.textContent?.trim()||'';
+      }
     });
-    const data = await r.json();
-    const advice = data.content?.[0]?.text || '';
-    textEl.className = 'daily-advice-text';
-    textEl.textContent = advice;
-    metaEl.textContent = ouraData ? '· basato su dati Strava + Oura' : '· basato su dati Strava';
-  } catch(e) {
-    textEl.className = 'daily-advice-text';
-    textEl.textContent = 'Non riesco a generare il consiglio in questo momento.';
   }
+  const workoutEl=document.getElementById('adviceWorkout');
+  const textEl=document.getElementById('adviceText');
+  const metaEl=document.getElementById('adviceMeta');
+  workoutEl.style.display='inline-block';
+  workoutEl.textContent=todayTag+(todayMain?' · '+todayMain.replace(/^\d+\s*km\s*/i,'').trim():'');
+  textEl.className='daily-advice-text loading';
+  textEl.textContent='Claude sta analizzando i tuoi dati...';
+
+  const ouraCtx=_ouraCache
+    ?`Prontezza: ${_ouraCache.readiness?.score??'n/d'}/100, Sonno: ${_ouraCache.sleep?.score??'n/d'}/100, HRV: ${_ouraCache.readiness?.contributors?.hrv_balance??'n/d'}, FC riposo: ${_ouraCache.readiness?.contributors?.resting_heart_rate??'n/d'} bpm`
+    :'Dati Oura non disponibili.';
+  const runsCtx=_recentRuns.length>0?_recentRuns.slice(0,5).map(r=>`${new Date(r.start_date_local).toLocaleDateString('it-IT',{weekday:'short'})}: ${(r.distance/1000).toFixed(1)} km`).join(', '):'Nessuna corsa recente.';
+  const weekCtx=week?`Settimana ${week.n} del piano.`:'Piano non ancora iniziato.';
+
+  const prompt=`Sei il coach di Lorena, che si prepara per la Corsa dei 5 Laghi (24,5km, 440D+) il 6 set 2026, obiettivo 2h30'. ${weekCtx} Oggi (${todayDay2}) previsto: ${todayMain} ${todaySub}. Recupero: ${ouraCtx}. Ultime corse: ${runsCtx}. Scrivi un consiglio personalizzato per oggi in 2-3 frasi, italiano, tono caldo e diretto da coach.`;
+  try {
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:200,messages:[{role:'user',content:prompt}]})});
+    const d=await r.json();
+    textEl.className='daily-advice-text';
+    textEl.textContent=d.content?.[0]?.text||'Nessun consiglio disponibile.';
+    metaEl.textContent=_ouraCache?'· basato su Strava + Oura':'· basato su Strava';
+  } catch { textEl.className='daily-advice-text'; textEl.textContent='Impossibile generare il consiglio al momento.'; }
 }
 
-// ─── INIT ────────────────────────────────────────────────
-async function init() {
-  // countdown
-  const now   = new Date();
-  const msDay = 864e5;
-  const dm = Math.ceil((new Date('2026-06-26') - now) / msDay);
-  const dt = Math.ceil((new Date('2026-09-06') - now) / msDay);
-  const elM = document.getElementById('cd-mezza');
-  const elT = document.getElementById('cd-trail');
-  if (elM) elM.innerHTML = dm > 0 ? `${dm}<span>giorni</span>` : dm === 0 ? 'Oggi!<span></span>' : 'Passata<span></span>';
-  if (elT) elT.innerHTML = dt > 0 ? `${dt}<span>giorni</span>` : dt === 0 ? 'Oggi!<span></span>' : 'Passata<span></span>';
+// ── PHASE TOGGLE ──────────────────────────────────────────
+window.togglePhase=function(header){
+  const c=header.nextElementSibling, t=header.querySelector('.phase-toggle');
+  c.classList.toggle('hidden'); t.classList.toggle('open',!c.classList.contains('hidden'));
+};
 
-  // phase toggle
-  document.querySelectorAll('.phase-header').forEach(h => {
-    h.onclick = () => togglePhase(h);
-  });
+// ── MAIN ──────────────────────────────────────────────────
+const params=new URLSearchParams(location.search);
+const code=params.get('code'), state=params.get('state');
 
-  // oauth callback
-  const params = new URLSearchParams(window.location.search);
-  const state  = params.get('state');
-  const code   = params.get('code');
-
-  // Oura callback
-  if (code && state === 'oura') {
-    setLoading('Autenticazione Oura in corso...');
-    history.replaceState({}, '', OURA_REDIRECT_URI);
-    try {
-      const data = await exchangeOuraCode(code);
-      if (data.access_token) {
-        saveOuraToken(data);
-        await syncOura(data.access_token);
-      }
-    } catch(e) { console.error('Oura auth error', e); }
-    hideLoading();
-    // poi continua con strava
-    const stravaToken = await getValidToken();
-    if (stravaToken) {
-      setStravaStatus(true);
-      await syncWithStrava(stravaToken);
-    } else {
-      setStravaStatus(false);
-    }
-    hideLoading();
-    return;
-  }
-  if (code) {
-    setLoading('Autenticazione in corso...');
-    history.replaceState({}, '', REDIRECT_URI);
-    try {
-      const data = await exchangeCode(code);
-      if (data.access_token) {
-        saveToken(data);
-        setStravaStatus(true, data.athlete?.firstname);
-        await syncWithStrava(data.access_token);
-      } else {
-        setStravaStatus(false);
-      }
-    } catch { setStravaStatus(false); }
-    hideLoading();
-    return;
-  }
-
-  // token esistente
-  setLoading('Verifica connessione Strava...');
-  const token = await getValidToken();
-  if (token) {
-    setStravaStatus(true);
-    await syncWithStrava(token);
-  } else {
-    setStravaStatus(false);
-  }
-
-  // Oura token esistente
-  const ouraToken = await getValidOuraToken();
-  if (ouraToken) {
-    setLoading('Carico dati Oura...');
-    await syncOura(ouraToken);
-  } else {
-    // genera consiglio solo con dati Strava
-    const planInfo = getTodayPlanInfo();
-    if (planInfo) await generateDailyAdvice(null, _recentRuns, planInfo);
-  }
+if (code && state==='oura') {
+  history.replaceState({},''  ,BASE_URL); setLoading('Autenticazione Oura...');
+  try{const d=await exchangeOura(code);if(d.access_token){saveOuraToken(d);await syncOura(d.access_token);}}catch(e){console.error(e);}
+  const st=await getStravaToken();
+  if(st){setStravaUI(true);await syncStrava(st);await generateAdvice();}else{setStravaUI(false);}
+  hideLoading();
+} else if (code && state==='strava') {
+  history.replaceState({},''  ,BASE_URL); setLoading('Autenticazione Strava...');
+  try{const d=await exchangeStrava(code);if(d.access_token){saveToken(d);setStravaUI(true,d.athlete?.firstname);await syncStrava(d.access_token);}else{setStravaUI(false);}}catch(e){console.error(e);setStravaUI(false);}
+  const ot=await getOuraToken(); if(ot){await syncOura(ot);}
+  await generateAdvice(); hideLoading();
+} else {
+  const st=await getStravaToken();
+  if(st){setStravaUI(true);setLoading('Sincronizzo Strava...');await syncStrava(st);await generateAdvice();}
+  else{setStravaUI(false);}
+  const ot=await getOuraToken(); if(ot){setLoading('Carico Oura...');await syncOura(ot);if(st)await generateAdvice();}
   hideLoading();
 }
 
-function togglePhase(header) {
-  const content = header.nextElementSibling;
-  const toggle  = header.querySelector('.phase-toggle');
-  const hidden  = content.classList.toggle('hidden');
-  toggle.classList.toggle('open', !hidden);
-}
-
-init();
+}); // DOMContentLoaded
 </script>
 </body>
 </html>
