@@ -729,16 +729,16 @@ async function getStravaToken() {
 // ── AUTH OURA ─────────────────────────────────────────────
 window.handleOuraAuth = function() {
   if (loadOuraToken()) { clearOuraToken(); location.reload(); return; }
-  location.href = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=${encodeURIComponent('email personal daily heartrate workout session')}&state=oura`;
+  location.href = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=email+personal+daily+heartrate+workout+session&state=oura`;
 };
 async function exchangeOura(code) {
-  const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'authorization_code',code,client_id:OURA_CLIENT_ID,client_secret:OURA_CLIENT_SECRET,redirect_uri:BASE_URL})});
+  const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`grant_type=authorization_code&code=${encodeURIComponent(code)}&client_id=${encodeURIComponent(OURA_CLIENT_ID)}&client_secret=${encodeURIComponent(OURA_CLIENT_SECRET)}&redirect_uri=${encodeURIComponent(BASE_URL)}`});
   return r.json();
 }
 async function getOuraToken() {
   let t = loadOuraToken(); if (!t) return null;
   if (Date.now()/1000 > t.expires_at-300) {
-    const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({grant_type:'refresh_token',refresh_token:t.refresh_token,client_id:OURA_CLIENT_ID,client_secret:OURA_CLIENT_SECRET})});
+    const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`grant_type=refresh_token&refresh_token=${encodeURIComponent(t.refresh_token)}&client_id=${encodeURIComponent(OURA_CLIENT_ID)}&client_secret=${encodeURIComponent(OURA_CLIENT_SECRET)}`});
     const f = await r.json(); if (f.access_token){saveOuraToken(f);return f.access_token;} clearOuraToken(); return null;
   }
   return t.access_token;
