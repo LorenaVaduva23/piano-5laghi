@@ -711,7 +711,8 @@ function clearOuraToken() { localStorage.removeItem('oura_token'); }
 // ── AUTH STRAVA ───────────────────────────────────────────
 window.handleStravaAuth = function() {
   if (loadToken()) { clearToken(); location.reload(); return; }
-  location.href = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=activity:read_all&state=strava`;
+  localStorage.setItem('pending_auth', 'strava');
+  location.href = `https://www.strava.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=activity:read_all`;
 };
 async function exchangeStrava(code) {
   const r = await fetch('https://www.strava.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_id:CLIENT_ID,client_secret:CLIENT_SECRET,code,grant_type:'authorization_code'})});
@@ -729,7 +730,8 @@ async function getStravaToken() {
 // ── AUTH OURA ─────────────────────────────────────────────
 window.handleOuraAuth = function() {
   if (loadOuraToken()) { clearOuraToken(); location.reload(); return; }
-  location.href = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=email+personal+daily+heartrate+workout+session&state=oura`;
+  localStorage.setItem('pending_auth', 'oura');
+  location.href = `https://cloud.ouraring.com/oauth/authorize?client_id=${OURA_CLIENT_ID}&redirect_uri=${encodeURIComponent(BASE_URL)}&response_type=code&scope=email+personal+daily+heartrate+workout+session`;
 };
 async function exchangeOura(code) {
   const r = await fetch('https://api.ouraring.com/oauth/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:`grant_type=authorization_code&code=${encodeURIComponent(code)}&client_id=${encodeURIComponent(OURA_CLIENT_ID)}&client_secret=${encodeURIComponent(OURA_CLIENT_SECRET)}&redirect_uri=${encodeURIComponent(BASE_URL)}`});
@@ -884,19 +886,28 @@ window.togglePhase=function(header){
 
 // ── MAIN ──────────────────────────────────────────────────
 const params=new URLSearchParams(location.search);
-const code=params.get('code'), state=params.get('state');
+const code=params.get('code');
+const pending=localStorage.getItem('pending_auth');
 
-if (code && state==='oura') {
+if (code && pending==='oura') {
+  localStorage.removeItem('pending_auth');
   history.replaceState({},''  ,BASE_URL); setLoading('Autenticazione Oura...');
-  try{const d=await exchangeOura(code);if(d.access_token){saveOuraToken(d);await syncOura(d.access_token);}}catch(e){console.error(e);}
+  try{const d=await exchangeOura(code);if(d.access_token){saveOuraToken(d);await syncOura(d.access_token);}}catch(e){console.error('Oura error',e);}
   const st=await getStravaToken();
   if(st){setStravaUI(true);await syncStrava(st);await generateAdvice();}else{setStravaUI(false);}
   hideLoading();
-} else if (code && state==='strava') {
+} else if (code && pending==='strava') {
+  localStorage.removeItem('pending_auth');
   history.replaceState({},''  ,BASE_URL); setLoading('Autenticazione Strava...');
   try{const d=await exchangeStrava(code);if(d.access_token){saveToken(d);setStravaUI(true,d.athlete?.firstname);await syncStrava(d.access_token);}else{setStravaUI(false);}}catch(e){console.error(e);setStravaUI(false);}
   const ot=await getOuraToken(); if(ot){await syncOura(ot);}
   await generateAdvice(); hideLoading();
+} else if (code) {
+  // fallback: prova Strava
+  localStorage.removeItem('pending_auth');
+  history.replaceState({},''  ,BASE_URL); setLoading('Autenticazione...');
+  try{const d=await exchangeStrava(code);if(d.access_token){saveToken(d);setStravaUI(true,d.athlete?.firstname);await syncStrava(d.access_token);await generateAdvice();}}catch(e){console.error(e);}
+  hideLoading();
 } else {
   const st=await getStravaToken();
   if(st){setStravaUI(true);setLoading('Sincronizzo Strava...');await syncStrava(st);await generateAdvice();}
